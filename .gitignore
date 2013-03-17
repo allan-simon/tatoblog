@@ -11,3 +11,10 @@
 *.lai
 *.la
 *.a
+
+*.[oa]
+*.swp
+*.pyc
+build/*
+*.back
+app/build/*
