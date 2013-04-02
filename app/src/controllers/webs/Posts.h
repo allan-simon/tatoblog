@@ -73,6 +73,19 @@ class Posts : public Controller {
          */
         void show();
 
+        /**
+         * @brief Page to add a new post
+         * @since 26 March 2013
+         */
+        void write_new();
+
+        /**
+         * @brief Display nothing, page to treat a form used to
+         *        add a new post
+         * @since 26 March 2013
+         */
+        void write_new_treat();
+
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 
 };

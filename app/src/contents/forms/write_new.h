@@ -17,65 +17,76 @@
  *
  *
  * @category Tatoblog
- * @package  Contents
+ * @package  Form
  * @author   Allan Simon <allan.simon@supinfo.com> 
  * @license  Affero General Public License
  * @link     https://github.com/allan-simon/tatoblog@
  */
 
 
-#ifndef TATOBLOG_CONTENTS_POSTS_H
-#define TATOBLOG_CONTENTS_POSTS_H
+#ifndef TATOBLOG_WRITE_NEW
+#define TATOBLOG_WRITE_NEW
 
-#include "cppcms_skel/contents/content.h"
 
-#include "contents/forms/write_new.h"
-//%%%NEXT_CONTENT_FORM_INCLUDE_MARKER%%%
+#include <cppcms/form.h>
 
-namespace contents {
+namespace forms{
 namespace posts {
 
 /**
- * @class Posts
- * @brief Base content for every action of Posts controller
- * @since 17 March 2013
- */
-struct Posts : public BaseContent {
-};
-
-/**
- * @struct Show Content used to transport the information used to display
- *         a post
- * @since  17 March 2013
- */
-struct Show : public Posts {
-
-    Show() {
-
-    }
-
-};
-
-/**
- * @struct WriteNew used to transport the information used to display
- *         The page containing a form to create a new post
+ * @struct write_new Form to add a new post
  * @since  26 March 2013
+ *
  */
-struct WriteNew : public Posts {
+struct WriteNew : public cppcms::form {
 
-    forms::posts::WriteNew writeNewForm;
+    //%%%NEXT_WIDGET_VAR_MARKER%%%
+       
+    /**
+     * @brief text field to choose what will be the title
+     *        of the post
+     *
+     * @since 2 April 2013
+     */
+    cppcms::widgets::text title;
+     
+    /**
+     * @brief text field to choose what will be the slug
+     *        of the post
+     *
+     * @since 26 March 2013
+     */
+    cppcms::widgets::text slug;
+    cppcms::widgets::textarea introduction;
+    cppcms::widgets::textarea main;
+
+    /**
+     * @brief button to publish the article and view it
+     */
+    cppcms::widgets::submit publishAndShow;
 
     /**
      * @brief Constructor
      */
     WriteNew() {
+
+        //%%%NEXT_WIDGET_ADD_MARKER%%%
+
+        add(publishAndShow);
+        publishAndShow.name(
+            cppcms::locale::translate("Publish and show")
+        );
+        publishAndShow.value("publishAndShow");
     }
+
 
 };
 
-//%%%NEXT_CONTENT_MARKER%%%
 
 } // end of namespace posts
-} //end of namespace contents
+}// end of namespace forms
+
 
 #endif
+
+

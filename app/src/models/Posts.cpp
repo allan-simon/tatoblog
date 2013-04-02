@@ -44,6 +44,19 @@ Posts::Posts() :
 {
 }
 
+/**
+ *
+ */
+int Posts::create(
+    const std::string &title,
+    const std::string &slug,
+    const std::string &introduction,
+    const std::string &main
+) {
+    // TODO fill this 
+    return -1;
+}
+
 
 } // end namespace models
 

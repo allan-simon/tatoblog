@@ -32,20 +32,38 @@ namespace models {
 
 
 /**
- * @class Posts
+ * @class Posts Class to store and retrieve data related
+ *        to the post objects
  * 
- * @brief @TODO
- * @since 17 March 2013       
+ * @since 26 March 2013       
  *
  */
 class Posts : public SqliteModel {
     public:
         /**
          * @brief Constructor
-         * @since 17 March 2013
+         * @since 26 March 2013
          */
         Posts();
-
+        
+        /**
+         * @brief Create a new article in the database
+         *
+         * @param title         The title of the new post
+         * @param slug          URL of the post
+         * @param introduction  Text that will displayed in list
+         *                      of posts 
+         * @param main          The main text of the post
+         *
+         * @return The id of the newly created Post, or a negative
+         *         number in case of failure
+         */
+        int create(
+            const std::string &title,
+            const std::string &slug,
+            const std::string &introduction,
+            const std::string &main
+        );
 };
 
 } // end namespace models 

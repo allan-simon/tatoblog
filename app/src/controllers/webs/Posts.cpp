@@ -32,6 +32,7 @@
 #include "models/Posts.h"
 //%%%NEXT_INC_MODEL_CTRL_MARKER%%%
 
+#define _(X) cppcms::locale::translate(X)
 
 namespace controllers {
 namespace webs {
@@ -41,7 +42,11 @@ Posts::Posts(cppcms::service& serv) :
 {
 
     dispatcher().assign("/show", &Posts::show, this);
+
+    dispatcher().assign("/write-new", &Posts::write_new, this);
+    dispatcher().assign("/write-new_treat", &Posts::write_new_treat, this);
     //%%%NEXT_ACTION_DISPATCHER_MARKER%%%, do not delete
+
 
     postsModel = new models::Posts();
     //%%%NEXT_NEW_MODEL_CTRL_MARKER%%%
@@ -66,6 +71,59 @@ void Posts::show() {
 
     render("posts_show", c);
 }
+
+/**
+ *
+ */
+void Posts::write_new() {
+
+    contents::posts::WriteNew c;
+    init_content(c);
+
+
+    render("posts_write_new", c);
+}
+
+
+/**
+ *
+ */
+void Posts::write_new_treat() {
+    TREAT_PAGE();
+
+    forms::posts::WriteNew form;
+    form.load(context());
+    if (!form.validate()) {
+        go_back_to_previous_page();
+    }
+    
+    // we retrieve the information in the form
+    const std::string title = form.title.value();
+    const std::string slug = form.slug.value();
+    const std::string introduction = form.introduction.value();
+    const std::string main = form.main.value();
+
+    
+    //we save in the database
+    const int postId = postsModel->create(
+        title,
+        slug,
+        introduction,
+        main
+    );
+
+    if (postId <= 0) {
+        set_message(_("Error while trying to add the post"));
+        go_back_to_previous_page();
+    // TODO after add  * save draf *publish and show
+    //                 * publish and write new one
+    } else {
+        set_message(_("Post created and published"));
+        redirect("/posts/show/"+slug);
+    }
+
+}
+
 
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 
