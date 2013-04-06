@@ -122,7 +122,7 @@
 
 <% template global_css() %>
     <!-- Le styles -->
-    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <% include css_link("/bootstrap/assets/css/bootstrap.css") %>
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -151,7 +151,7 @@
     }
     
     </style>
-    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <% include css_link("/bootstrap/assets/css/bootstrap-responsive.css") %>
 <% end template %>
 
 <% template local_css() %><% end template %>
@@ -197,20 +197,38 @@
  *        so the pages load faster
  */
 <% template footer_js() %>
-<script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+<% include js_link("/bootstrap/assets/js/jquery.js") %>
+<% include js_link("/bootstrap/assets/js/bootstrap-transition.js") %>
+<% include js_link("/bootstrap/assets/js/bootstrap-alert.js") %>
+<% include js_link("/bootstrap/assets/js/bootstrap-modal.js") %>
+<% include js_link("/bootstrap/assets/js/bootstrap-dropdown.js") %>
+<% include js_link("/bootstrap/assets/js/bootstrap-scrollspy.js") %>
+<% include js_link("/bootstrap/assets/js/bootstrap-tab.js") %>
+<% include js_link("/bootstrap/assets/js/bootstrap-tooltip.js") %>
+<% include js_link("/bootstrap/assets/js/bootstrap-popover.js") %>
+<% include js_link("/bootstrap/assets/js/bootstrap-button.js") %>
+<% include js_link("/bootstrap/assets/js/bootstrap-collapse.js") %>
+<% include js_link("/bootstrap/assets/js/bootstrap-carousel.js") %>
+<% include js_link("/bootstrap/assets/js/bootstrap-typeahead.js") %>
 <% end template %>
+
+/**
+ * @brief Used to generate a script tag for a javascript file
+ *
+ * @since 20 March 2013
+ */
+<% template js_link(std::string const& jsFile) %><script
+    src="<% c++ out() << Config::get_js_path(); %><%= jsFile %>"
+    type="text/javascript"
+></script><% end template %>
+
+<% template css_link(std::string const& cssFile) %><link 
+    href="<% c++ out() << Config::get_css_path(); %><%= cssFile %>"
+    rel="stylesheet"
+    type="text/css"
+/><% end template %>
+
+
 
 
 

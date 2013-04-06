@@ -30,8 +30,10 @@
         "baseHost" : "",
         "innerCssFolder" : "../resource/css/",
         "innerImgFolder" : "../resource/img/",
+        "innerJsFolder" : "../resource/js/",
         "imgPath" : "/img/",
-        "cssPath" : "/css/"
+        "jsPath" : "http://twitter.github.io",
+        "cssPath" : "http://twitter.github.io"
     },
 	"tatoblog" : {
         "interfacelangs" : [
