@@ -63,6 +63,15 @@ int main(int argc,char ** argv)
         )
     );
 
+    Config::set_js_path(
+        app.settings().get<string>(
+            "skel.jsPath"
+        )
+    );
+
+
+
+
 
 
     Config::set_inner_css_folder(
