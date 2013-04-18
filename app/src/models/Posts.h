@@ -25,6 +25,7 @@
 #ifndef TATOBLOG_POSTS
 #define TATOBLOG_POSTS
 
+#define POST_CREATION_ERROR -1
 
 
 #include "cppcms_skel/models/SqliteModel.h"
@@ -54,6 +55,7 @@ class Posts : public SqliteModel {
          * @param introduction  Text that will displayed in list
          *                      of posts 
          * @param main          The main text of the post
+         * @param lang          Lang in which the article is written
          *
          * @return The id of the newly created Post, or a negative
          *         number in case of failure
@@ -62,7 +64,8 @@ class Posts : public SqliteModel {
             const std::string &title,
             const std::string &slug,
             const std::string &introduction,
-            const std::string &main
+            const std::string &main,
+            const std::string &lang = "en"
         );
 };
 

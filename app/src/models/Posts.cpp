@@ -51,10 +51,43 @@ int Posts::create(
     const std::string &title,
     const std::string &slug,
     const std::string &introduction,
-    const std::string &main
+    const std::string &main,
+    const std::string &lang 
 ) {
-    // TODO fill this 
-    return -1;
+    cppdb::statement statement = sqliteDb.prepare(
+        "INSERT INTO posts("
+        "    title,"
+        "    slug,"
+        "    introduction,"
+        "    main,"
+        "    lang"
+        ") "
+        "VALUES ( "
+        "   ? ,"
+        "   ? ,"
+        "   ? ,"
+        "   ? ,"
+        "   ? "
+        ")"
+    );
+    
+    statement.bind(title);
+    statement.bind(slug);
+    statement.bind(introduction);
+    statement.bind(main);
+    statement.bind(lang);
+
+    try {
+        statement.exec();
+    } catch (cppdb::cppdb_error const &e) {
+        std::cerr << e.what();
+        statement.reset();
+        return POST_CREATION_ERROR;
+    }
+
+    const int id = statement.last_insert_id();
+    statement.reset();
+    return id;
 }
 
 

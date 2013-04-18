@@ -27,6 +27,7 @@
 #ifndef TATOBLOG_WRITE_NEW
 #define TATOBLOG_WRITE_NEW
 
+#define _(X) cppcms::locale::translate(X)
 
 #include <cppcms/form.h>
 
@@ -64,6 +65,7 @@ struct WriteNew : public cppcms::form {
      * @brief button to publish the article and view it
      */
     cppcms::widgets::submit publishAndShow;
+    cppcms::widgets::submit saveAsDraft;
 
     /**
      * @brief Constructor
@@ -71,12 +73,34 @@ struct WriteNew : public cppcms::form {
     WriteNew() {
 
         //%%%NEXT_WIDGET_ADD_MARKER%%%
+        title.name("title");
+        title.message(_("Title"));
+        title.non_empty();
+        add(title); 
+        
+        slug.name("slug");
+        slug.message(_("Slug (URL message)"));
+        slug.non_empty();
+        add(slug);
+        
+        
+        introduction.name("introduction");
+        introduction.message(_("Introduction"));
+        introduction.non_empty();
+        add(introduction);
 
-        add(publishAndShow);
-        publishAndShow.name(
-            cppcms::locale::translate("Publish and show")
-        );
+        main.name("main");
+        main.message(_( "Main content"));
+        add(main);
+
+        publishAndShow.name(_("Publish and show"));
         publishAndShow.value("publishAndShow");
+        add(publishAndShow);
+       
+        saveAsDraft.name(_("Save as draft"));
+        saveAsDraft.value("saveAsDraft");
+        add(saveAsDraft);
+
     }
 
 

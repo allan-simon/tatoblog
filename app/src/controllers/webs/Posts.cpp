@@ -89,12 +89,15 @@ void Posts::write_new() {
  *
  */
 void Posts::write_new_treat() {
-    TREAT_PAGE();
+    //TREAT_PAGE();
 
     forms::posts::WriteNew form;
     form.load(context());
     if (!form.validate()) {
+        //TODO add a more precise message
+        set_message(_("The form is not valid."));
         go_back_to_previous_page();
+        return;
     }
     
     // we retrieve the information in the form
@@ -115,13 +118,17 @@ void Posts::write_new_treat() {
     if (postId <= 0) {
         set_message(_("Error while trying to add the post"));
         go_back_to_previous_page();
-    // TODO after add  * save draf *publish and show
-    //                 * publish and write new one
-    } else {
-        set_message(_("Post created and published"));
+    } else if (form.saveAsDraft.value()){
+        set_message(_("Post created and saved as draft"));
+        //TODO replace this redirection
+        redirect("/posts/show/"+slug);
+    } else if (form.publishAndShow.value()) {
+        set_message(_("Post created published"));
         redirect("/posts/show/"+slug);
     }
-
+    // we're not supposed to arrive here
+    set_message(_("Unknown error"));
+    go_back_to_previous_page();
 }
 
 
