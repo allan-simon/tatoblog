@@ -2,8 +2,21 @@ cmake_minimum_required(VERSION 2.6)
 
 project(tatoblog)
 
+# set the version
+set(PROJECT_VERSION "0.0.1")
+set(ARCHIVE_NAME ${CMAKE_PROJECT_NAME}-${PROJECT_VERSION})
+add_custom_target(
+    dist
+    COMMAND git archive --prefix=${ARCHIVE_NAME}/ HEAD
+        | bzip2 > ${CMAKE_BINARY_DIR}/${ARCHIVE_NAME}.tar.bz2
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+)
 
-enable_testing()
+
+#set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+
+
 
 include_directories(
     src
@@ -49,10 +62,6 @@ file(
     src/generics/*
 )
 
-####### FRAMEWORK PART 
-# TODO we need to compile the framework separately          
-#####
-
 
 add_executable(
     tatoblog
@@ -63,8 +72,7 @@ add_executable(
     ${generics_files}
     ${results_files}
     ${contents_files}
-
-    view_web.cpp
+    view_responsive_skin_web.cpp
 )
 
 set(
@@ -86,18 +94,37 @@ target_link_libraries(
 )
 
 
+
+########################
+#  Default responsive skin
+########################
+set(
+    RESPONSIVE_WEB_SKIN_DIR
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/views/webs/responsive
+)
+
 add_custom_command(
-    OUTPUT view_web.cpp
+    OUTPUT view_responsive_skin_web.cpp
     COMMAND cppcms_tmpl_cc 
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/views/webs/layouts/master.tmpl
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/views/webs/*/*.tmpl 
-        -o view_web.cpp
+        ${RESPONSIVE_WEB_SKIN_DIR}/layouts/master.tmpl
+        ${RESPONSIVE_WEB_SKIN_DIR}/layouts/post_edition.tmpl
+        ${RESPONSIVE_WEB_SKIN_DIR}/*/*.tmpl 
+        -o view_responsive_skin_web.cpp
+        -s responsive
     DEPENDS
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/views/webs/*/*.tmpl 
+        ${RESPONSIVE_WEB_SKIN_DIR}/*/*.tmpl 
 )
 
 
+
+####################
 # unit tests
+####################
+
+#activate things to do unit testing
+enable_testing()
+
+
 
 set(
     ALL_TESTS

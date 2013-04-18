@@ -1,0 +1,26 @@
+<% c++ #include "contents/Posts.h" %>
+<% skin %>
+<% view posts_write_new uses contents::posts::WriteNew extends post_edition %>
+<% template title() %><% gt "Write a new post" %><% end template %>
+
+
+<% template main_content() %> 
+<div class="module">
+    <h2><% gt "Create a new post" %></h2>
+    <form method="POST" action="/posts/write-new_treat" >
+        <table>
+            <% include widget_row(writeNewForm.title) %>
+            <% include widget_row(writeNewForm.slug) %>
+            <% include widget_row(writeNewForm.introduction) %>
+            <% include widget_row(writeNewForm.main) %>
+        </table>
+        <% include save_buttons(writeNewForm) %>
+    </form>
+</div>
+<% end template %>
+
+
+
+<% end view %>
+<% end skin %>
+

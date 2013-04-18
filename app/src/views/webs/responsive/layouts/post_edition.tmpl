@@ -1,0 +1,41 @@
+<% c++ #ifndef LAYOUT_POSTS_EDITION %>
+<% c++ #define LAYOUT_POSTS_EDITION %>
+<% c++ #include "contents/Posts.h" %>
+<% skin %>
+/**
+ * @brief Common template used by all the page related to
+ *        posts edition
+ */
+<% view post_edition uses contents::BaseContent extends master %>
+
+<% template widget_row(cppcms::widgets::base_widget & widget) %>
+<tr>
+    <td>
+        <label for="<%= widget.name() %>">
+            <%= widget.message() %>
+        </label>
+    </td>
+    <td>
+        <% form input widget %>
+    </td>
+</tr>
+<% end template %>
+
+<% template save_buttons(forms::posts::WriteNew & form) %>
+    <div class="submit">
+
+        <% form input form.saveAsDraft %>
+    </div>
+    <div class="submit">
+        <% form input form.publishAndShow %>
+    </div>
+<% end template %>
+
+
+
+
+
+<% end view %>
+<% end skin %>
+
+<% c++ #endif %>

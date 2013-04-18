@@ -28,12 +28,13 @@
     },
     "skel" : {
         "baseHost" : "",
-        "innerCssFolder" : "../resource/css/",
-        "innerImgFolder" : "../resource/img/",
-        "innerJsFolder" : "../resource/js/",
+        "innerCssFolder" : "../resources/skins/responsive/css/",
+        "innerImgFolder" : "../resources/skins/responsive/img/",
+        "innerJsFolder" : "../resources/skins/responsive/js/",
         "imgPath" : "/img/",
-        "jsPath" : "http://twitter.github.io",
-        "cssPath" : "http://twitter.github.io"
+        "cssPath" : "/css/",
+        "jsPath" : "/js/"
+
     },
 	"tatoblog" : {
         "interfacelangs" : [
@@ -43,5 +44,9 @@
         "sqlite3" : {
             "path" : "../data/sqlite3.db"
         }
-	}
+	},
+   "views" : {
+        "default_skin" : "responsive"
+    },
+
 }
