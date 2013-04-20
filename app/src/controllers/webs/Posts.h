@@ -68,10 +68,13 @@ class Posts : public Controller {
     
 
         /**
-         * @brief @TODO
+         * @brief Page to display a given article
+         *
+         * @param slug The article slug
+         *
          * @since 17 March 2013
          */
-        void show();
+        void show(const std::string slug);
 
         /**
          * @brief Page to add a new post

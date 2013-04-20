@@ -31,6 +31,7 @@
 
 #include "contents/forms/write_new.h"
 //%%%NEXT_CONTENT_FORM_INCLUDE_MARKER%%%
+#include "results/Posts.h"
 
 namespace contents {
 namespace posts {
@@ -49,6 +50,34 @@ struct Posts : public BaseContent {
  * @since  17 March 2013
  */
 struct Show : public Posts {
+
+    /**
+     * @brief placeholder for the function that will be called
+     *        when using  <%= variable | ext markdown %> in the
+     *        template
+     *
+     * @since 18 April 2013
+     */
+    booster::function<
+        std::string(
+            const std::string &
+        )
+    > markdown;
+
+
+    /**
+     * @brief key used for caching the post section of the web
+     *        page
+     *
+     * @since 18 April 2013
+     *
+     */
+    std::string cacheKey;
+ 
+
+
+
+    results::Post post;
 
     Show() {
 

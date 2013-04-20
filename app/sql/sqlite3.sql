@@ -28,7 +28,8 @@ begin;
         slug text not null,                            -- "url" name of the article 
         title text not null,                           -- title of the article 
         introduction text not null,                         -- the content of the article itself
-        main text not null                         -- the content of the article itself
+        main text not null,                         -- the content of the article itself
+        unique(lang,slug)
     );
     create index posts_user_id_idx on posts(user_id);
 

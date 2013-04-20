@@ -1,11 +1,16 @@
 <% c++ #include "contents/Posts.h" %>
 <% skin %>
 <% view posts_show uses contents::posts::Show extends master %>
-<% template title() %><% gt "TODO TITLE" %><% end template %>
+<% template title() %><%= post.title %><% end template %>
 
 
 <% template main_content() %> 
-    Edit Me Posts / Show
+<% cache cacheKey %>
+<% include begin_module() %>
+    <%= post.introduction | ext markdown %>
+    <%= post.main | ext markdown %>
+<% include end_module() %>
+<%end cache %>
 <% end template %>
 
 

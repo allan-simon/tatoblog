@@ -90,6 +90,53 @@ int Posts::create(
     return id;
 }
 
+/**
+ *
+ */
+results::Post Posts::get_from_lang_and_slug(
+    const std::string &lang,
+    const std::string &slug
+) {
+    cppdb::statement getFromLangAndSlug = sqliteDb.prepare(
+        "SELECT id as post_id, * FROM posts "
+        "WHERE lang = ? AND slug = ? LIMIT 1"
+    );
+    getFromLangAndSlug.bind(lang);
+    getFromLangAndSlug.bind(slug);
+
+    cppdb::result res = getFromLangAndSlug.row();
+    results::Post post = get_from_result(res);
+    
+    getFromLangAndSlug.reset();
+    return post;
+}
+
+/**
+ *
+ */
+results::Post Posts::get_from_result(
+    cppdb::result &res
+) {
+    results::Post post;
+    
+    if (!res.empty()) {
+        post.id = res.get<int>("post_id");
+        post.lang = res.get<std::string>("lang");
+        post.introduction = res.get<std::string>("introduction");
+        post.main = res.get<std::string>("main");
+        post.slug = res.get<std::string>("slug");
+        post.title = res.get<std::string>("title");
+    } else {
+        post.id = 0;
+    }
+    return post;
+}
+
+
+
+
+
+
 
 } // end namespace models
 

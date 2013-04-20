@@ -25,10 +25,13 @@
 #ifndef TATOBLOG_POSTS
 #define TATOBLOG_POSTS
 
-#define POST_CREATION_ERROR -1
 
 
 #include "cppcms_skel/models/SqliteModel.h"
+
+#include "results/Posts.h"
+
+#define POST_CREATION_ERROR -1
 namespace models {
 
 
@@ -66,6 +69,39 @@ class Posts : public SqliteModel {
             const std::string &introduction,
             const std::string &main,
             const std::string &lang = "en"
+        );
+        
+        
+        /**
+         * @brief Retrieve a post using the couple (lang,slug)
+         *        that we extract from the URL
+         * 
+         * @param lang ISO code of the language in which the post
+         *             is written
+         * @param slug Slug of the post (i.e URL version of the
+         *             title)
+         *
+         * @return The post corresponding to the criteria
+         *
+         * @since 21 Avril 2013
+         */
+        results::Post get_from_lang_and_slug(
+            const std::string &lang,
+            const std::string &slug
+        );
+
+    private:
+        /**
+         * @brief get a complete post out of a cppdb result
+         *
+         * @param res A cppdb result that was given after executing a query
+         *
+         * @return A post with every field filled
+         *
+         * @since 21 March 2013
+         */
+        results::Post get_from_result(
+            cppdb::result &res
         );
 };
 

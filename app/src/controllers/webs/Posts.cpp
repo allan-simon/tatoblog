@@ -32,6 +32,8 @@
 #include "models/Posts.h"
 //%%%NEXT_INC_MODEL_CTRL_MARKER%%%
 
+#include "generics/markdown.h"
+
 #define _(X) cppcms::locale::translate(X)
 
 namespace controllers {
@@ -41,7 +43,7 @@ Posts::Posts(cppcms::service& serv) :
     controllers::webs::Controller(serv)
 {
 
-    dispatcher().assign("/show", &Posts::show, this);
+    dispatcher().assign("/show/(.+)", &Posts::show, this, 1);
 
     dispatcher().assign("/write-new", &Posts::write_new, this);
     dispatcher().assign("/write-new_treat", &Posts::write_new_treat, this);
@@ -63,10 +65,27 @@ Posts::~Posts() {
 /**
  *
  */
-void Posts::show() {
+void Posts::show(const std::string slug) {
 
     contents::posts::Show c;
     init_content(c);
+    std::string lang = get_interface_lang();
+
+    
+    c.post  = postsModel->get_from_lang_and_slug(
+        lang,
+        slug
+    );
+    
+    if (!c.post.exists()) {
+        set_message(_("This article does not exists"));
+        go_to_main_page();
+        return;
+    }
+    
+    c.markdown = mymarkdown;
+    c.cacheKey = lang + slug;
+ 
 
 
     render("posts_show", c);
@@ -118,13 +137,16 @@ void Posts::write_new_treat() {
     if (postId <= 0) {
         set_message(_("Error while trying to add the post"));
         go_back_to_previous_page();
+        return;
     } else if (form.saveAsDraft.value()){
         set_message(_("Post created and saved as draft"));
         //TODO replace this redirection
         redirect("/posts/show/"+slug);
+        return;
     } else if (form.publishAndShow.value()) {
         set_message(_("Post created published"));
         redirect("/posts/show/"+slug);
+        return;
     }
     // we're not supposed to arrive here
     set_message(_("Unknown error"));
