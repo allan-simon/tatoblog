@@ -7,6 +7,7 @@
 <% template main_content() %> 
 <% cache cacheKey %>
 <% include begin_module() %>
+    <h1><%= post.title %></h1>
     <%= post.introduction | ext markdown %>
     <%= post.main | ext markdown %>
 <% include end_module() %>
