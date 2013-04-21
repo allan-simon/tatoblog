@@ -8,19 +8,6 @@
  */
 <% view post_edition uses contents::BaseContent extends master %>
 
-<% template widget_row(cppcms::widgets::base_widget & widget) %>
-<tr>
-    <td>
-        <label for="<%= widget.name() %>">
-            <%= widget.message() %>
-        </label>
-    </td>
-    <td>
-        <% form input widget %>
-    </td>
-</tr>
-<% end template %>
-
 <% template save_buttons(forms::posts::WriteNew & form) %>
     <div class="submit">
 

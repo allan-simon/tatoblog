@@ -27,6 +27,7 @@
 #ifndef TATOBLOG_INSTALL
 #define TATOBLOG_INSTALL
 
+#define _(X) cppcms::locale::translate(X)
 
 #include <cppcms/form.h>
 
@@ -44,6 +45,37 @@ struct Install : public cppcms::form {
     //%%%NEXT_WIDGET_VAR_MARKER%%%
 
     /**
+     * @brief Field to enter the global title of this blog
+     */
+    cppcms::widgets::text blogTitle;
+    
+    /**
+     * @brief Field to enter the administrator's name
+     */
+    cppcms::widgets::text adminName;
+
+    /**
+     * @brief Field to enter the admin's password
+     */
+    cppcms::widgets::password password;
+    
+    /**
+     * @brief Field to enter a second time the password (to avoid typo)
+     */
+    cppcms::widgets::password passwordTwice;
+    
+    /**
+     * @brief Field use to precise what will be the introduction put on the
+     *        main page to describe the blog's goal
+     */
+    cppcms::widgets::textarea blogIntroduction;
+
+    /**
+     * @brief Field that will be put at the bottom of the page
+     */
+    cppcms::widgets::text blogCopyright;
+
+    /**
      * @brief button to submit the form
      */
     cppcms::widgets::submit submit;
@@ -54,6 +86,37 @@ struct Install : public cppcms::form {
     Install() {
 
         //%%%NEXT_WIDGET_ADD_MARKER%%%
+        blogTitle.name("blogtitle");
+        blogTitle.message(_("Blog's title"));
+        blogTitle.non_empty();
+        add(blogTitle); 
+
+        adminName.name("adminname");
+        adminName.message(_("Admnistrator's name"));
+        adminName.non_empty();
+        add(adminName); 
+
+
+        password.name("password");
+        password.message(_("Admnistrator's password"));
+        password.non_empty();
+        add(password); 
+
+        passwordTwice.name("passwordtwice");
+        passwordTwice.message(_("Admnistrator's password, again"));
+        passwordTwice.non_empty();
+        add(passwordTwice); 
+
+
+        blogIntroduction.name("blogintroduction");
+        blogIntroduction.message(_("Blog's introduction"));
+        blogIntroduction.non_empty();
+        add(blogIntroduction); 
+
+        blogCopyright.name("blogcopyright");
+        blogCopyright.message(_("Blog's copyright"));
+        blogCopyright.non_empty();
+        add(blogCopyright); 
 
         add(submit);
         submit.name(

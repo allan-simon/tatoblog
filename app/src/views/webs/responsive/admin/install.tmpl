@@ -1,12 +1,34 @@
 <% c++ #include "contents/Admin.h" %>
 <% skin %>
 <% view admin_install uses contents::admin::Install extends master %>
-<% template title() %><% gt "TODO TITLE" %><% end template %>
+<% template title() %><% gt "Installation page" %><% end template %>
 
 
-<% template body() %> 
-    Edit Me Admin / Install
+<% template main_content() %> 
+<% include begin_module() %>
+    <h1><% gt "Initial configuration of your blog" %></h1>
+    <form method="POST" action="/admin/install_treat" >
+        <table>
+            <% include widget_row(installForm.blogTitle) %>
+            <% include widget_row(installForm.adminName) %>
+            <% include widget_row(installForm.password) %>
+            <% include widget_row(installForm.passwordTwice) %>
+            <% include widget_row(installForm.blogIntroduction) %>
+            <% include widget_row(installForm.blogCopyright) %>
+        </table>
+        <% include save_button(installForm) %>
+    </form>
+<% include end_module() %>
 <% end template %>
+
+<% template save_button(forms::admin::Install & form) %>
+    <div class="submit">
+        <% form input form.submit %>
+    </div>
+<% end template %>
+
+
+
 
 
 
