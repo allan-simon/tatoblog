@@ -39,6 +39,7 @@
 #include <cppcms_skel/controllers/webs/Css.h>
 
 #include "controllers/webs/Posts.h"
+#include "controllers/webs/Admin.h"
 //%%%NEXT_CONTROLLER_INCLUDE_MARKER%%%, do not delete
 #include "controllers/webs/Pages.h"
 
@@ -56,6 +57,7 @@ class TatoBlog : public cppcms::application {
 
 private:
     //%%%NEXT_MAIN_APP_CTRL_ATTR%%%
+    controllers::webs::Admin admin;
     controllers::webs::Posts posts;
     controllers::webs::Img img;
     controllers::webs::Css css;
