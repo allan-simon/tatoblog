@@ -90,6 +90,15 @@ class Posts : public SqliteModel {
             const std::string &slug
         );
 
+        /**
+         * @brief return all posts
+         *
+         * @return A list containing all the posts (without the main content)
+         *
+         * @since 22 Avril 2013
+         */
+        results::Posts get_all(void);
+
     private:
         /**
          * @brief get a complete post out of a cppdb result

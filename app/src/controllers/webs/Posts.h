@@ -89,6 +89,13 @@ class Posts : public Controller {
          */
         void write_new_treat();
 
+        /**
+         * @brief Display all the articles (actually only titles+introductions)
+         * @since 21 April 2013
+         */
+        void show_all();
+
+
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 
 };

@@ -2,6 +2,7 @@
 <% c++ #define RESPONSIVE_SKIN_LAYOUT_MASTER %>
 <% c++ #include <cppcms_skel/generics/Config.h> %>
 <% c++ #include "cppcms_skel/contents/content.h" %>
+<% c++ #include "results/Posts.h" %>
 <% skin responsive %>
 <% view master uses contents::BaseContent %>
 
@@ -306,6 +307,25 @@
     height="<%= height %>"
     alt="<%= alt %>"
 /><%end template %>
+
+/**
+ * @brief Used to a link to a post using a Post object
+ *
+ * @since 22 April 2013
+ */
+<% template post_link(results::Post const& post) %>
+<a href="/posts/show/<%= post.slug %>"><%= post.title %></a>
+<% end template %>
+
+
+/**
+ * @brief Used to a link to an post using strings
+ *
+ * @since 22 April 2013
+ */
+<% template post_link(std::string const& lang, std::string const& slug, std::string const& anchorText) %>
+<a href="/posts/show/<%= slug %>"><%= anchorText %></a>
+<% end template %>
 
 
 

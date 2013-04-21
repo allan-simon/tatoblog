@@ -47,6 +47,7 @@ Posts::Posts(cppcms::service& serv) :
 
     dispatcher().assign("/write-new", &Posts::write_new, this);
     dispatcher().assign("/write-new_treat", &Posts::write_new_treat, this);
+    dispatcher().assign("/show-all", &Posts::show_all, this);
     //%%%NEXT_ACTION_DISPATCHER_MARKER%%%, do not delete
 
 
@@ -153,6 +154,18 @@ void Posts::write_new_treat() {
     go_back_to_previous_page();
 }
 
+/**
+ *
+ */
+void Posts::show_all() {
+
+    contents::posts::ShowAll c;
+    init_content(c);
+
+    c.posts = postsModel->get_all();
+
+    render("posts_show_all", c);
+}
 
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 

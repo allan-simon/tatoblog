@@ -102,6 +102,22 @@ struct WriteNew : public Posts {
 
 };
 
+/**
+ * @struct ShowAll
+ * @since  21 April 2013
+ * @brief 
+ */
+struct ShowAll : public Posts {
+
+    results::Posts posts;
+
+    ShowAll() {
+
+    }
+
+};
+
+
 //%%%NEXT_CONTENT_MARKER%%%
 
 } // end of namespace posts

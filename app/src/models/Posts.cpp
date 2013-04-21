@@ -114,6 +114,38 @@ results::Post Posts::get_from_lang_and_slug(
 /**
  *
  */
+results::Posts Posts::get_all(void) {
+    results::Post post;
+    cppdb::statement allPosts = sqliteDb.prepare(
+        "SELECT "
+        "   id,   "
+        "   lang, "
+        "   slug, "
+        "   title, "
+        "   introduction "
+        "FROM posts "
+        "ORDER BY title"
+    );
+
+    cppdb::result res = allPosts .query();
+    results::Posts posts;
+    while (res.next()) {
+        results::Post tmpPost(
+            res.get<int>("id"),
+            res.get<std::string>("lang"),
+            res.get<std::string>("slug"),
+            res.get<std::string>("title"),
+            res.get<std::string>("introduction")
+        );
+        posts.push_back(tmpPost);
+    }
+    allPosts.reset();
+    return posts;
+}
+
+/**
+ *
+ */
 results::Post Posts::get_from_result(
     cppdb::result &res
 ) {

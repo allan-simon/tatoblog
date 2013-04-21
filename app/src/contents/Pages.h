@@ -38,6 +38,8 @@
 
 #include "cppcms_skel/contents/content.h"
 
+#include "results/Posts.h"
+
 namespace contents {
 namespace pages {
 
@@ -53,6 +55,29 @@ struct Pages : public BaseContent {
  * Content used by the homepage
  */
 struct Homepage : public Pages {
+
+    /**
+     * @brief placeholder for the function that will be called
+     *        when using  <%= variable | ext markdown %> in the
+     *        template
+     *
+     * @since 21 April 2013
+     */
+    booster::function<
+        std::string(
+            const std::string &
+        )
+    > markdown;
+
+
+
+    
+    /**
+     * @brief The posts to display on the homepage
+     *
+     * @since 21 April 2013
+     */
+    results::Posts posts;
 
     Homepage() {
     }

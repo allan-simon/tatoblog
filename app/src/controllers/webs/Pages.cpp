@@ -24,12 +24,14 @@
  */
 
 #include <cppcms/session_interface.h>
+#include <cppcms_skel/contents/forms/change_interface_langs.h>
 #include "Pages.h"
 
 #include "contents/Pages.h"
 
-#include "cppcms_skel/contents/forms/change_interface_langs.h"
+#include "models/Posts.h"
 
+#include "generics/markdown.h"
 
 
 namespace controllers {
@@ -65,6 +67,10 @@ void Pages::homepage() {
     contents::pages::Homepage c;
     init_content(c);
 
+    models::Posts postsModel;     
+    
+    c.markdown = mymarkdown;
+    c.posts = postsModel.get_all();
 
     render("homepage", c);
 }
