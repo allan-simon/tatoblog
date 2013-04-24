@@ -74,7 +74,10 @@ TatoBlog::TatoBlog(cppcms::service &serv) :
     add(img,"^/img(.*)",1);
     //NOTE important to add the page controller at the end
     //as its regexp is more global
+    //TODO for SEO reason, try to find a way to be sure to access the
+    //     home page by only one URL not "" and "/"
     add(pages, "/(.*)", 1);
+    add(pages, "", 0);
 
 
 }
