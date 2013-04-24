@@ -50,6 +50,12 @@ int main(int argc,char ** argv)
     conf->sqlite3Path = app.settings().get<string>(
         "tatoblog.sqlite3.path"
     );
+    
+    Config::set_base_host(
+        app.settings().get<string>(
+            "skel.baseHost"
+        )
+    );
 
     Config::set_css_path(
         app.settings().get<string>(
@@ -68,11 +74,6 @@ int main(int argc,char ** argv)
             "skel.jsPath"
         )
     );
-
-
-
-
-
 
     Config::set_inner_css_folder(
         app.settings().get<string>(

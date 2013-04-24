@@ -8,7 +8,7 @@
         "backend" : "thread_shared"
     },
 	"http" : {
-		"script_names" : ["/tatoblog"]
+		"script_names" : ["/"]
 	},
 	"localization" : {
 		"encoding" : "utf-8",
@@ -27,7 +27,7 @@
         }
     },
     "skel" : {
-        "baseHost" : "",
+        "baseHost" : "http://127.0.0.1:8080",
         "innerCssFolder" : "../resources/skins/responsive/css/",
         "innerImgFolder" : "../resources/skins/responsive/img/",
         "innerJsFolder" : "../resources/skins/responsive/js/",
