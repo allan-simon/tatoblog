@@ -42,7 +42,7 @@ namespace models {
  * @since 26 March 2013       
  *
  */
-class Posts : public SqliteModel {
+class Posts : public cppcmsskel::models::SqliteModel {
     public:
         /**
          * @brief Constructor

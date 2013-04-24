@@ -77,16 +77,10 @@ int Posts::create(
     statement.bind(main);
     statement.bind(lang);
 
-    try {
-        statement.exec();
-    } catch (cppdb::cppdb_error const &e) {
-        std::cerr << e.what();
-        statement.reset();
+    if (!execute_simple(statement)) {
         return POST_CREATION_ERROR;
     }
-
     const int id = statement.last_insert_id();
-    statement.reset();
     return id;
 }
 
