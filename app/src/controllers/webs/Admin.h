@@ -26,12 +26,18 @@
 #ifndef TATOBLOGCONTROLLERS_WEBS_ADMIN_H
 #define TATOBLOGCONTROLLERS_WEBS_ADMIN_H
 
-#include "cppcms_skel/controllers/webs/Controller.h"
-
+#include <cppcms_skel/controllers/webs/Controller.h>
 
 //needed to avoid to include models directly here,
 //which would have the side effects to require to recompile the// controller every time we modify a model. even though it does// not affect the controller
+namespace cppcmsskel {
 namespace models {
+    class Users;
+}
+}
+
+namespace models {
+    class Blog;
     // %%%NEXT_CLASS_MODEL_CTRL_MARKER%%% 
 }
 
@@ -57,16 +63,27 @@ class Admin : public Controller {
         ~Admin();
 
     private:
+        /**
+         * @brief Model to manage the blog information
+         * @since 25 April 2013
+         */
+        models::Blog *blogModel;
+
         // %%%NEXT_VAR_MODEL_CTRL_MARKER%%%
+    
+        
+        cppcmsskel::models::Users* usersModel;
 
         /**
-         * @brief @TODO add a description
+         * @brief Use the first time you launch the blog to
+         *        set up the admin account, basic blog information etc.
          * @since 22 April 2013
          */
         void install();
 
         /**
-         * @brief @TODO add a description
+         * @brief Treat page, display nothing, use to treat the information
+         *        sent by the 'install' page
          * @since 22 April 2013
          */
         void install_treat();
