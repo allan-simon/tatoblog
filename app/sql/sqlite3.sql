@@ -3,6 +3,7 @@ begin;
     drop table if exists posts;
     drop table if exists users;
     drop table if exists salt;
+    drop table if exists blog;
 
     -- table representing a user
     CREATE TABLE users (
@@ -13,12 +14,14 @@ begin;
         "password"    text    not null,                    -- his password hashed
         "since"       integer not null,                    -- his registering date
         "homepage"    text    default "",                  -- his personnal webpage/website
-        "description" text    default ""                   -- his self-written description
+        "description" text    default "",                  -- his self-written description
+        "group"       integer default 3                    -- which kind of user it is (admin, normal user etc.)
     );
     CREATE INDEX users_username_idx ON users (username);
 
-    -- table representing an article (i.e a page of the wiki)
-    -- TODO maybe have something to do a more precise restriction (for example authorizing only some kind of users
+    -- table representing a post (i.e a post written on the blog)
+    -- TODO maybe have something to do a more precise restriction 
+    --      (for example authorizing only some kind of users
     --      to edit a given pages (e.g only moderators/only admin)
     -- TODO same things for the visibility 
     create table posts (
@@ -34,6 +37,13 @@ begin;
     create index posts_user_id_idx on posts(user_id);
 
 
+
+    -- table to store the information about the blog
+    create table blog (
+        title text not null,
+        introduction text not null,
+        copyright text not null
+    );
 
     -- table to store the salt used for the password encryption
     create table salt(
