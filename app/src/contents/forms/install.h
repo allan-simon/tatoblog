@@ -125,6 +125,14 @@ struct Install : public cppcms::form {
         submit.value("submit");
     }
 
+    /**
+     *
+     */
+    virtual bool validate() {
+        return form::validate() &&
+            password.value().compare(passwordTwice.value()) == 0;
+    }
+
 
 };
 
