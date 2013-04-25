@@ -71,6 +71,12 @@ void Admin::install() {
 
     contents::admin::Install c;
     init_content(c);
+    
+    if (usersModel->admin_exists()) {
+        set_message(_("The website has already been installed"));
+        go_to_main_page();
+        return;
+    }
 
 
     render("admin_install", c);
@@ -83,6 +89,15 @@ void Admin::install() {
 void Admin::install_treat() {
 
     TREAT_PAGE();
+
+    // we repeat this test on both install and install_treat
+    // to avoid malicious people submitting directly the form
+    // to this page
+    if (usersModel->admin_exists()) {
+        set_message(_("The website has already been installed"));
+        go_to_main_page();
+        return;
+    }
 
     forms::admin::Install form;
     form.load(context());
