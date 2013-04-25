@@ -15,7 +15,7 @@ begin;
         "since"       integer not null,                    -- his registering date
         "homepage"    text    default "",                  -- his personnal webpage/website
         "description" text    default "",                  -- his self-written description
-        "group"       integer default 3                    -- which kind of user it is (admin, normal user etc.)
+        "group_id"       integer default 3                    -- which kind of user it is (admin, normal user etc.)
     );
     CREATE INDEX users_username_idx ON users (username);
 
