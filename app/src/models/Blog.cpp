@@ -84,6 +84,28 @@ int Blog::save_information(
 }
 
 
+/**
+ *
+ */
+results::Blog Blog::get(void) {
+    cppdb::statement statement = sqliteDb.prepare(
+        "SELECT * FROM blog " 
+        "LIMIT 1"
+    );
+    cppdb::result res = statement.row(); 
+    if (!res.empty()) {
+        return results::Blog(
+            res.get<std::string>("title"),
+            res.get<std::string>("introduction"),
+            res.get<std::string>("copyright")
+        );
+    } else {
+        return results::Blog();
+    }
+}
+
+
+
 } // end namespace models
 } // end namespace tatoblog
 

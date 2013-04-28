@@ -29,6 +29,7 @@
 
 #include <cppcms_skel/models/SqliteModel.h>
 
+#include "results/Blog.h"
 
 namespace tatoblog {
 namespace models {
@@ -70,6 +71,15 @@ class Blog : public cppcmsskel::models::SqliteModel {
             const std::string &blogIntroduction,
             const std::string &blogCopyright
         );
+
+        /**
+         * @brief Get the blog's information
+         *
+         * @return A blog object containing all the blog's informatoin
+         *
+         * @since 26 April 2013
+         */
+        results::Blog get(void);
 
 };
 
