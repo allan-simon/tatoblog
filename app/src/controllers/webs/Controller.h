@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
  * @category Tatoblog
  * @package  Controllers
  * @author   Allan Simon <allan.simon@supinfo.com> 
@@ -23,52 +22,48 @@
  * @link     https://github.com/allan-simon/tatoblog@
  */
 
-#ifndef CONTROLLERS_WEBS_PAGES_H
-#define CONTROLLERS_WEBS_PAGES_H
 
-#include "Controller.h"
+#ifndef TATBLOG_CONTROLLERS_WEBS_CONTROLLER_H
+#define TATBLOG_CONTROLLERS_WEBS_CONTROLLER_H
+
+#include <cppcms_skel/controllers/webs/Controller.h>
+
+#include "contents/BaseContent.h"
+
 
 namespace tatoblog {
-namespace controllers {
-namespace webs { 
-/**
- * @class Pages
- * contains all functions to generate all independant pages
- */
-class Pages : public Controller {
-    public:
-        /**
-         * Constructor
-         */
-        Pages(cppcms::service &serv);
-        /**
-         * generate home page
-         */
-        void homepage();
-        /**
-         * Main page to add sentences and so
-         */
-        void contribute();
-        /**
-         * Terms of use page
-         */
-        void terms_of_use();
-        /**
-         * Team and Credits page
-         */
-        void team_and_credits();
-        //TODO doc
 
-        /**
-         * @brief Display nothing, only to treat the form which permit
-         *        to change the language of the user interface
-         * @since 2 September 2011
-         */
-        void change_interface_lang_treat();
+namespace models {
+    class Blog;
+}
+
+
+namespace controllers {
+namespace webs {
+
+
+/**
+ * @class Controller base controller for tatoblog
+ *
+ * @since 26 April 2013
+ */
+class Controller : public ::controllers::webs::Controller {
+
+    protected:
+        void init_content(tatoblog::contents::BaseContent& content);
+        
+    private:
+        models::Blog* blogModel;
+        
+	public:
+		Controller(cppcms::service &serv);
+        ~Controller();
 };
 
-} // End namespace webs
-} // End namespace generics
+
+
+} // end namespace webs
+} // end namespace controllers
 } // end namespace tatoblog
 
 #endif

@@ -31,8 +31,10 @@
 
 #include "contents/forms/write_new.h"
 //%%%NEXT_CONTENT_FORM_INCLUDE_MARKER%%%
+#include "BaseContent.h"
 #include "results/Posts.h"
 
+namespace tatoblog {
 namespace contents {
 namespace posts {
 
@@ -122,5 +124,6 @@ struct ShowAll : public Posts {
 
 } // end of namespace posts
 } //end of namespace contents
+} // end of namespace tatoblog
 
 #endif

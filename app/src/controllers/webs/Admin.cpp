@@ -37,11 +37,12 @@
 //%%%NEXT_INC_MODEL_CTRL_MARKER%%%
 
 
+namespace tatoblog {
 namespace controllers {
 namespace webs {
 
 Admin::Admin(cppcms::service& serv) :
-    controllers::webs::Controller(serv)
+    Controller(serv)
 {
 
 
@@ -69,7 +70,7 @@ Admin::~Admin() {
  */
 void Admin::install() {
 
-    contents::admin::Install c;
+    tatoblog::contents::admin::Install c;
     init_content(c);
     
     if (usersModel->admin_exists()) {
@@ -166,7 +167,6 @@ void Admin::install_treat() {
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 
 
-
-
 } // End namespace webs
 } // End namespace controllers
+} // end namespace tatoblog

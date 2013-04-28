@@ -26,15 +26,19 @@
 #ifndef TATOBLOGCONTROLLERS_WEBS_POSTS_H
 #define TATOBLOGCONTROLLERS_WEBS_POSTS_H
 
-#include "cppcms_skel/controllers/webs/Controller.h"
+#include "Controller.h"
 
 
+
+namespace tatoblog {
 //needed to avoid to include models directly here,
 //which would have the side effects to require to recompile the// controller every time we modify a model. even though it does// not affect the controller
 namespace models {
     class Posts;
     // %%%NEXT_CLASS_MODEL_CTRL_MARKER%%% 
 }
+
+
 
 namespace controllers {
 namespace webs { 
@@ -102,5 +106,6 @@ class Posts : public Controller {
 
 } // End namespace webs
 } // End namespace controllers
+} // End namespace tatoblog
 
 #endif

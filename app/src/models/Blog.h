@@ -27,7 +27,10 @@
 
 
 
-#include "cppcms_skel/models/SqliteModel.h"
+#include <cppcms_skel/models/SqliteModel.h>
+
+
+namespace tatoblog {
 namespace models {
 
 #define BLOG_UPDATE_OK 1
@@ -71,5 +74,6 @@ class Blog : public cppcmsskel::models::SqliteModel {
 };
 
 } // end namespace models 
+} // end namespace tatoblog
 
 #endif

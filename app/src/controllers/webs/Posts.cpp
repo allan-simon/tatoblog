@@ -26,7 +26,6 @@
 #include <cppcms/session_interface.h>
 #include "Posts.h"
 
-
 #include "contents/Posts.h"
 
 #include "models/Posts.h"
@@ -36,11 +35,11 @@
 
 #define _(X) cppcms::locale::translate(X)
 
+namespace tatoblog {
 namespace controllers {
 namespace webs {
 
-Posts::Posts(cppcms::service& serv) :
-    controllers::webs::Controller(serv)
+Posts::Posts(cppcms::service& serv) : Controller(serv)
 {
 
     dispatcher().assign("/show/(.+)", &Posts::show, this, 1);
@@ -171,6 +170,6 @@ void Posts::show_all() {
 
 
 
-
 } // End namespace webs
 } // End namespace controllers
+} // End namespace tatoblog

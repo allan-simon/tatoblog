@@ -34,10 +34,11 @@
 #include "generics/markdown.h"
 
 
+namespace tatoblog {
 namespace controllers {
 namespace webs {
 
-Pages::Pages(cppcms::service& serv) : controllers::webs::Controller(serv) {
+Pages::Pages(cppcms::service& serv) : Controller(serv) {
     dispatcher().assign("", &Pages::homepage, this);
 }
 
@@ -78,3 +79,4 @@ void Pages::homepage() {
 
 } // End namespace webs
 } // End namespace controllers
+} // end of namespace tatoblog

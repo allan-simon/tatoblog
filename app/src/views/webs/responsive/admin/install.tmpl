@@ -1,6 +1,6 @@
 <% c++ #include "contents/Admin.h" %>
 <% skin %>
-<% view admin_install uses contents::admin::Install extends master %>
+<% view admin_install uses tatoblog::contents::admin::Install extends master %>
 <% template title() %><% gt "Installation page" %><% end template %>
 
 
@@ -21,7 +21,7 @@
 <% include end_module() %>
 <% end template %>
 
-<% template save_button(forms::admin::Install & form) %>
+<% template save_button(tatoblog::forms::admin::Install & form) %>
     <div class="submit">
         <% form input form.submit %>
     </div>

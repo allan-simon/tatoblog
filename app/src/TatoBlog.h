@@ -43,6 +43,7 @@
 //%%%NEXT_CONTROLLER_INCLUDE_MARKER%%%, do not delete
 #include "controllers/webs/Pages.h"
 
+namespace tatoblog {
 /** 
  * @namespace apps
  */
@@ -59,8 +60,8 @@ private:
     //%%%NEXT_MAIN_APP_CTRL_ATTR%%%
     controllers::webs::Admin admin;
     controllers::webs::Posts posts;
-    controllers::webs::Img img;
-    controllers::webs::Css css;
+    ::controllers::webs::Img img;
+    ::controllers::webs::Css css;
     controllers::webs::Pages pages;
 
     /**
@@ -90,5 +91,7 @@ public:
      */
 	void main(std::string url);
 }; 
-}
+
+} // end of namespace apps
+} // end of namespace tatoblog
 #endif

@@ -32,6 +32,7 @@
 #include "results/Posts.h"
 
 #define POST_CREATION_ERROR -1
+namespace tatoblog {
 namespace models {
 
 
@@ -85,7 +86,7 @@ class Posts : public cppcmsskel::models::SqliteModel {
          *
          * @since 21 Avril 2013
          */
-        results::Post get_from_lang_and_slug(
+        tatoblog::results::Post get_from_lang_and_slug(
             const std::string &lang,
             const std::string &slug
         );
@@ -115,5 +116,6 @@ class Posts : public cppcmsskel::models::SqliteModel {
 };
 
 } // end namespace models 
+} // end namespace tatoblog
 
 #endif

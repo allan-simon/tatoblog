@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
  * @category Tatoblog
  * @package  Controllers
  * @author   Allan Simon <allan.simon@supinfo.com> 
@@ -23,52 +22,38 @@
  * @link     https://github.com/allan-simon/tatoblog@
  */
 
-#ifndef CONTROLLERS_WEBS_PAGES_H
-#define CONTROLLERS_WEBS_PAGES_H
-
 #include "Controller.h"
-
+#include "models/Blog.h"
 namespace tatoblog {
 namespace controllers {
-namespace webs { 
+namespace webs {
+
 /**
- * @class Pages
- * contains all functions to generate all independant pages
+ *
  */
-class Pages : public Controller {
-    public:
-        /**
-         * Constructor
-         */
-        Pages(cppcms::service &serv);
-        /**
-         * generate home page
-         */
-        void homepage();
-        /**
-         * Main page to add sentences and so
-         */
-        void contribute();
-        /**
-         * Terms of use page
-         */
-        void terms_of_use();
-        /**
-         * Team and Credits page
-         */
-        void team_and_credits();
-        //TODO doc
+Controller::Controller(cppcms::service &serv) :
+    ::controllers::webs::Controller(serv)
+{
+    blogModel = new models::Blog();
+}
 
-        /**
-         * @brief Display nothing, only to treat the form which permit
-         *        to change the language of the user interface
-         * @since 2 September 2011
-         */
-        void change_interface_lang_treat();
-};
+/**
+ *
+ */
+Controller::~Controller() {
+    delete blogModel;
+}
 
-} // End namespace webs
-} // End namespace generics
+/**
+ *
+ */
+void Controller::init_content(tatoblog::contents::BaseContent& content) {
+    content.blog = blogModel->get();
+}
+
+
+
+
+} // end namespace webs
+} // end namespace controllers
 } // end namespace tatoblog
-
-#endif

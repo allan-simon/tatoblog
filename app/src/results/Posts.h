@@ -29,6 +29,7 @@
 #include <map>
 #include <string>
 
+namespace tatoblog {
 namespace results {
 
     /**
@@ -81,6 +82,7 @@ namespace results {
 
 
 
+}
 }
 
 #endif

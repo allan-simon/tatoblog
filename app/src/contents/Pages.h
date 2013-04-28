@@ -40,6 +40,7 @@
 
 #include "results/Posts.h"
 
+namespace tatoblog {
 namespace contents {
 namespace pages {
 
@@ -86,6 +87,7 @@ struct Homepage : public Pages {
 
 
 } // end of namespace pages
-} //end of namespace contents
+} // end of namespace contents
+} // end of namespace tatoblog
 
 #endif

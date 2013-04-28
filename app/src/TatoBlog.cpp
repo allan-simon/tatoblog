@@ -45,6 +45,7 @@
 
 #define DEFAULT_INTERFACE_LANG "en"
 
+namespace tatoblog {
 namespace apps {
 
 /**
@@ -139,5 +140,5 @@ std::string TatoBlog::get_default_interface_lang() {
 }
 
 
-
-} // namespace apps
+} // end of namespace apps
+} // end of namespace tatoblog

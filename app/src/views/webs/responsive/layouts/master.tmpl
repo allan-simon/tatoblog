@@ -1,10 +1,10 @@
 <% c++ #ifndef RESPONSIVE_SKIN_LAYOUT_MASTER %>
 <% c++ #define RESPONSIVE_SKIN_LAYOUT_MASTER %>
 <% c++ #include <cppcms_skel/generics/Config.h> %>
-<% c++ #include "cppcms_skel/contents/content.h" %>
+<% c++ #include "contents/BaseContent.h" %>
 <% c++ #include "results/Posts.h" %>
 <% skin responsive %>
-<% view master uses contents::BaseContent %>
+<% view master uses tatoblog::contents::BaseContent %>
 
 <% template render() %><!DOCTYPE html>
 <html lang="TODO">
@@ -330,7 +330,7 @@
  *
  * @since 22 April 2013
  */
-<% template post_link(results::Post const& post) %>
+<% template post_link(tatoblog::results::Post const& post) %>
 <a href="/posts/show/<%= post.slug %>"><%= post.title %></a>
 <% end template %>
 

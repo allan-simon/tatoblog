@@ -33,7 +33,7 @@
 
 #include "models/Blog.h"
 
-
+namespace tatoblog {
 namespace models {
 
 /**
@@ -85,5 +85,6 @@ int Blog::save_information(
 
 
 } // end namespace models
+} // end namespace tatoblog
 
 

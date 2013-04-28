@@ -31,6 +31,7 @@
 
 #include <cppcms/form.h>
 
+namespace tatoblog {
 namespace forms{
 namespace admin {
 
@@ -139,6 +140,7 @@ struct Install : public cppcms::form {
 
 } // end of namespace admin
 }// end of namespace forms
+} // end of namespace tatoblog
 
 
 #endif

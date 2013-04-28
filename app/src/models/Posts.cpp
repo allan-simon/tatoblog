@@ -34,6 +34,7 @@
 #include "models/Posts.h"
 
 
+namespace tatoblog {
 namespace models {
 
 /**
@@ -161,9 +162,7 @@ results::Post Posts::get_from_result(
 
 
 
-
-
-
 } // end namespace models
+} // end namespace tatoblog
 
 
