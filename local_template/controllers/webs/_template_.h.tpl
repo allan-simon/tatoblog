@@ -26,7 +26,7 @@
 #ifndef TATOBLOGCONTROLLERS_WEBS_%%CONTROLLER_INCLUDE%%_H
 #define TATOBLOGCONTROLLERS_WEBS_%%CONTROLLER_INCLUDE%%_H
 
-#include "cppcms_skel/controllers/webs/Controller.h"
+#include "Controller.h"
 
 
 namespace tatoblog {
