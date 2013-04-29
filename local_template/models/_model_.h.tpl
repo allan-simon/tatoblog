@@ -28,6 +28,7 @@
 
 
 #include "cppcms_skel/models/SqliteModel.h"
+namespace tatoblog {
 namespace models {
 
 
@@ -49,5 +50,6 @@ class %%MODEL_NAME%% : public SqliteModel {
 };
 
 } // end namespace models 
+} // end namespace tatoblog
 
 #endif

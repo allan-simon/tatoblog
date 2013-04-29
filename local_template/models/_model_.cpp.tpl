@@ -33,7 +33,7 @@
 
 #include "models/%%MODEL_NAME%%.h"
 
-
+namespace tatoblog {
 namespace models {
 
 /**
@@ -46,5 +46,6 @@ namespace models {
 
 
 } // end namespace models
+} // end namespace tatoblog 
 
 

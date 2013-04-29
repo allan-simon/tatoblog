@@ -27,10 +27,11 @@
 #ifndef TATOBLOG_CONTENTS_%%CONTROLLER_INCLUDE%%_H
 #define TATOBLOG_CONTENTS_%%CONTROLLER_INCLUDE%%_H
 
-#include "cppcms_skel/contents/content.h"
+#include "contents/BaseContent.h"
 
 //%%%NEXT_CONTENT_FORM_INCLUDE_MARKER%%%
 
+namespace tatoblog {
 namespace contents {
 namespace %%CONTROLLER_NS%% {
 
@@ -45,6 +46,7 @@ struct %%CONTROLLER_NAME%% : public BaseContent {
 //%%%NEXT_CONTENT_MARKER%%%
 
 } // end of namespace %%CONTROLLER_NS%%
-} //end of namespace contents
+} // end of namespace contents
+} // end of namespace tatoblog
 
 #endif

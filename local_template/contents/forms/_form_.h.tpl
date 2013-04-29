@@ -30,6 +30,7 @@
 
 #include <cppcms/form.h>
 
+namespace tatoblog {
 namespace forms{
 namespace %%CONTROLLER_NS%% {
 
@@ -67,7 +68,8 @@ struct %%FORM_STRUCT%% : public cppcms::form {
 
 
 } // end of namespace %%CONTROLLER_NS%%
-}// end of namespace forms
+} // end of namespace forms
+} // end of namespace tatoblog
 
 
 #endif

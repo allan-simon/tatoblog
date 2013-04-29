@@ -31,7 +31,7 @@
 
 //%%%NEXT_INC_MODEL_CTRL_MARKER%%%
 
-
+namespace tatoblog {
 namespace controllers {
 namespace webs {
 
@@ -58,3 +58,4 @@ namespace webs {
 
 } // End namespace webs
 } // End namespace controllers
+} // End namespace tatoblog
