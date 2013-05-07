@@ -28,6 +28,13 @@
 
 #include "Controller.h"
 
+namespace cppcmsskel {
+namespace models {
+    class Users;
+}
+}
+
+
 
 namespace tatoblog {
 
@@ -58,6 +65,13 @@ class Users : public Controller {
         ~Users();
 
     private:
+        /**
+         * @brief User's model 
+         * @since 8 May 2013
+         */
+        cppcmsskel::models::Users *usersModel;
+
+
         // %%%NEXT_VAR_MODEL_CTRL_MARKER%%%
 
         /**

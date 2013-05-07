@@ -24,6 +24,8 @@
  */
 
 #include <cppcms/session_interface.h>
+
+#include <cppcms_skel/models/Users.h>
 #include "Users.h"
 
 
@@ -46,12 +48,15 @@ Users::Users(cppcms::service& serv) :
 
 
     //%%%NEXT_NEW_MODEL_CTRL_MARKER%%%
+
+    usersModel = new cppcmsskel::models::Users();
 }
 
 /**
  *
  */
 Users::~Users() {
+    delete usersModel;
     //%%%NEXT_DEL_MODEL_CTRL_MARKER%%%
 }
 
