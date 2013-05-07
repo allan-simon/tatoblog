@@ -26,10 +26,14 @@
 #include <cppcms/session_interface.h>
 
 #include <cppcms_skel/models/Users.h>
+#include <cppcms_skel/generics/Config.h>
 #include "Users.h"
 
 
 #include "contents/Users.h"
+
+
+
 
 //%%%NEXT_INC_MODEL_CTRL_MARKER%%%
 
@@ -68,6 +72,18 @@ void Users::login() {
     contents::users::Login c;
     init_content(c);
 
+    // we store in the hidden field of the login form
+    // the page we wanted to access
+    // in order to be able to redirect on it after login
+
+    std::string wantedPage = request().get("from"); 
+    if(wantedPage.empty()) {
+        wantedPage = Config::get_base_host();
+    }
+
+    c.loginForm.previousUrl.value(
+        wantedPage
+    );
 
     render("users_login", c);
 }
@@ -77,13 +93,42 @@ void Users::login() {
  *
  */
 void Users::login_treat() {
+    TREAT_PAGE();
 
     forms::users::Login form;
     form.load(context());
+    
+    const std::string username = form.username.value();
 
     if (!form.validate()) {
+        set_message(_("Form didn't validate"));
         go_back_to_previous_page();
     }
+
+    if (
+        usersModel->is_login_correct(
+            username,
+            form.password.value()
+        )
+    ) {
+        set_current_username_and_id(
+            username,
+            usersModel->get_id_from_name<int>(username)
+        );
+        // we redirect to the page the user was before going
+        // on the login page
+        // TODO the message is not displayed try to see why
+        // certainly due to successive redirection
+        set_message(_("Login"));
+        redirect(
+            form.previousUrl.value()
+        );
+    } else {
+        set_message(_("Password incorrect"));
+        go_back_to_previous_page();
+    } 
+
+
 
 }
 
