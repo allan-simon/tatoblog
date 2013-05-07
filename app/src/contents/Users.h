@@ -29,6 +29,7 @@
 
 #include "contents/BaseContent.h"
 
+#include "contents/forms/login.h"
 //%%%NEXT_CONTENT_FORM_INCLUDE_MARKER%%%
 
 namespace tatoblog {
@@ -41,6 +42,23 @@ namespace users {
  * @since 29 April 2013
  */
 struct Users : public BaseContent {
+};
+
+/**
+ * @struct Login
+ * @since  29 April 2013
+ * @brief 
+ */
+struct Login : public Users {
+
+    forms::users::Login loginForm;
+
+    /**
+     * @brief Constructor
+     */
+    Login() {
+    }
+
 };
 
 //%%%NEXT_CONTENT_MARKER%%%

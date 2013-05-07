@@ -17,77 +17,61 @@
  *
  *
  * @category Tatoblog
- * @package  Controllers
+ * @package  Form
  * @author   Allan Simon <allan.simon@supinfo.com> 
  * @license  Affero General Public License
  * @link     https://github.com/allan-simon/tatoblog@
  */
 
-#include <cppcms/session_interface.h>
-#include "Users.h"
+
+#ifndef TATOBLOG_LOGIN
+#define TATOBLOG_LOGIN
 
 
-#include "contents/Users.h"
-
-//%%%NEXT_INC_MODEL_CTRL_MARKER%%%
+#include <cppcms/form.h>
 
 namespace tatoblog {
-namespace controllers {
-namespace webs {
-
-Users::Users(cppcms::service& serv) :
-    controllers::webs::Controller(serv)
-{
-
-
-    dispatcher().assign("/login", &Users::login, this);
-    dispatcher().assign("/login_treat", &Users::login_treat, this);
-    //%%%NEXT_ACTION_DISPATCHER_MARKER%%%, do not delete
-
-
-    //%%%NEXT_NEW_MODEL_CTRL_MARKER%%%
-}
+namespace forms{
+namespace users {
 
 /**
+ * @struct login
+ * @brief  @TODO
+ * @since  29 April 2013
  *
  */
-Users::~Users() {
-    //%%%NEXT_DEL_MODEL_CTRL_MARKER%%%
-}
+struct Login : public cppcms::form {
 
-/**
- *
- */
-void Users::login() {
+    //%%%NEXT_WIDGET_VAR_MARKER%%%
 
-    contents::users::Login c;
-    init_content(c);
+    /**
+     * @brief button to submit the form
+     */
+    cppcms::widgets::submit submit;
 
+    /**
+     * @brief Constructor
+     */
+    Login() {
 
-    render("users_login", c);
-}
+        //%%%NEXT_WIDGET_ADD_MARKER%%%
 
-
-/**
- *
- */
-void Users::login_treat() {
-
-    forms::users::Login form;
-    form.load(context());
-
-    if (!form.validate()) {
-        go_back_to_previous_page();
+        add(submit);
+        submit.name(
+            cppcms::locale::translate("submit")
+        );
+        submit.value("submit");
     }
 
-}
+
+};
 
 
-// %%%NEXT_ACTION_MARKER%%% , do not delete
+} // end of namespace users
+} // end of namespace forms
+} // end of namespace tatoblog
 
 
+#endif
 
 
-} // End namespace webs
-} // End namespace controllers
-} // End namespace tatoblog

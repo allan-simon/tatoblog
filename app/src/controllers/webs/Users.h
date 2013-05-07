@@ -60,6 +60,19 @@ class Users : public Controller {
     private:
         // %%%NEXT_VAR_MODEL_CTRL_MARKER%%%
 
+        /**
+         * @brief Page showing a form to login
+         * @since 29 April 2013
+         */
+        void login();
+
+        /**
+         * @brief Page displaying nothing, only here to treat
+         *        the login form
+         * @since 29 April 2013
+         */
+        void login_treat();
+
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 
 };
