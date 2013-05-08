@@ -24,6 +24,8 @@
  */
 
 #include <cppcms/session_interface.h>
+#include <cppcms_skel/generics/Config.h>
+
 #include "Posts.h"
 
 #include "contents/Posts.h"
@@ -96,6 +98,8 @@ void Posts::show(const std::string slug) {
  */
 void Posts::write_new() {
 
+    CHECK_PERMISSION_OR_GO_TO_LOGIN();
+    
     contents::posts::WriteNew c;
     init_content(c);
 
@@ -108,7 +112,9 @@ void Posts::write_new() {
  *
  */
 void Posts::write_new_treat() {
-    //TREAT_PAGE();
+
+    TREAT_PAGE();
+    CHECK_PERMISSION_OR_GO_TO_LOGIN();
 
     forms::posts::WriteNew form;
     form.load(context());
