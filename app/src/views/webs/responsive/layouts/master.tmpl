@@ -135,7 +135,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="TODO">TODO</a>
+        <a class="brand" href="<% c++ out() << Config::get_base_host(); %>">
+            <%= blog.title %>
+        </a>
         <div class="nav-collapse"><% include navigation_menu() %></div>
         <% include user_menu() %>
     </div>
@@ -143,16 +145,13 @@
 <% end template %>
 
 <% template navigation_menu() %>
+<!--
 <ul class="nav">
     <li class="active">
         <a href="/"><% gt "Home" %></a>
     </li>
-    <li>
-        <a href="/history/recent-changes" >
-            <% gt "Recent changes" %>
-        </a>
-    </li>
 </ul>
+!-->
 <% end template %>
 
 <% template user_menu() %>
