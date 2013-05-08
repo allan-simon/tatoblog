@@ -48,6 +48,7 @@ Controller::~Controller() {
  *
  */
 void Controller::init_content(tatoblog::contents::BaseContent& content) {
+    ::controllers::webs::Controller::init_content(content);
     content.blog = blogModel->get();
 }
 
