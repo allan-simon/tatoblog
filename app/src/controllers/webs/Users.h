@@ -73,6 +73,13 @@ class Users : public Controller {
 
 
         // %%%NEXT_VAR_MODEL_CTRL_MARKER%%%
+        
+        /**
+         * @brief Page displaying nothing, simply to logout and
+         *        redirect to the homepage
+         * @since 8 May 2013
+         */
+        void logout();
 
         /**
          * @brief Page showing a form to login

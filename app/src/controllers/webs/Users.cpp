@@ -46,6 +46,8 @@ Users::Users(cppcms::service& serv) :
 {
 
 
+    dispatcher().assign("/logout", &Users::logout, this);
+    
     dispatcher().assign("/login", &Users::login, this);
     dispatcher().assign("/login_treat", &Users::login_treat, this);
     //%%%NEXT_ACTION_DISPATCHER_MARKER%%%, do not delete
@@ -62,6 +64,16 @@ Users::Users(cppcms::service& serv) :
 Users::~Users() {
     delete usersModel;
     //%%%NEXT_DEL_MODEL_CTRL_MARKER%%%
+}
+
+/**
+ *
+ */
+void Users::logout() {
+    current_user_logout();
+    set_message(_("Logout"));
+    go_back_to_previous_page();
+
 }
 
 /**
