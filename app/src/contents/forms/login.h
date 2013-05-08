@@ -27,7 +27,12 @@
 #ifndef TATOBLOG_LOGIN
 #define TATOBLOG_LOGIN
 
+
+//TODO put it somewhere else
+#ifndef _
 #define _(X) cppcms::locale::translate((X))
+#endif
+
 
 
 #include <cppcms/form.h>
