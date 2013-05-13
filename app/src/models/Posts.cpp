@@ -53,7 +53,8 @@ int Posts::create(
     const std::string &slug,
     const std::string &introduction,
     const std::string &main,
-    const std::string &lang 
+    const std::string &lang,
+    const int userId
 ) {
     cppdb::statement statement = sqliteDb.prepare(
         "INSERT INTO posts("
@@ -61,9 +62,11 @@ int Posts::create(
         "    slug,"
         "    introduction,"
         "    main,"
-        "    lang"
+        "    lang,"
+        "    user_id"
         ") "
         "VALUES ( "
+        "   ? ,"
         "   ? ,"
         "   ? ,"
         "   ? ,"
@@ -77,6 +80,7 @@ int Posts::create(
     statement.bind(introduction);
     statement.bind(main);
     statement.bind(lang);
+    statement.bind(userId);
 
     if (!execute_simple(statement)) {
         return POST_CREATION_ERROR;

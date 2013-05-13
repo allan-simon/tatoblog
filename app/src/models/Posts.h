@@ -60,6 +60,7 @@ class Posts : public cppcmsskel::models::SqliteModel {
          *                      of posts 
          * @param main          The main text of the post
          * @param lang          Lang in which the article is written
+         * @param userId        Id of the user who has written the article 
          *
          * @return The id of the newly created Post, or a negative
          *         number in case of failure
@@ -69,7 +70,8 @@ class Posts : public cppcmsskel::models::SqliteModel {
             const std::string &slug,
             const std::string &introduction,
             const std::string &main,
-            const std::string &lang = "en"
+            const std::string &lang = "en",
+            const int userId = 0
         );
         
         

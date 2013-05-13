@@ -137,7 +137,9 @@ void Posts::write_new_treat() {
         title,
         slug,
         introduction,
-        main
+        main,
+        "en", // TODO replace this
+        get_current_user_id()
     );
 
     if (postId <= 0) {
