@@ -123,7 +123,7 @@ results::Posts Posts::get_all(void) {
         "   title, "
         "   introduction "
         "FROM posts "
-        "ORDER BY title"
+        "ORDER BY id DESC"
     );
 
     cppdb::result res = allPosts .query();
