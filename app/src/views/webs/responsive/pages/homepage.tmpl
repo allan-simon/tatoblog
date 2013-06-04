@@ -9,10 +9,12 @@
         <% include begin_module() %>
             <h1><% include post_link(post.lang,post.slug,post.title) %></h1>
             <%= post.introduction | ext markdown %>
+            <% include read_more(post.slug) %>            
         <% include end_module() %>
         <% end %>
     <% end foreach %>
 <% end template %>
+
 
 
 <% template annexe_content() %> 

@@ -334,6 +334,19 @@
 <a href="/posts/show/<%= post.slug %>"><%= post.title %></a>
 <% end template %>
 
+/**
+ * @brief generate the "read more ..." link
+ *
+ * @param slug The slug of the post 
+ *
+ * @since 5 June 2013
+ */
+<% template read_more(std::string const& slug) %>
+<p class="text-right">
+<a rel="nofollow" href="/posts/show/<%= slug %>"><% gt "(click to Read more ...)" %></a>
+</p>
+<% end template %>
+
 
 /**
  * @brief Used to a link to an post using strings
