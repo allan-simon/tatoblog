@@ -74,7 +74,7 @@ void Admin::install() {
     init_content(c);
     
     if (usersModel->admin_exists()) {
-        set_message(_("The website has already been installed"));
+        add_warning(_("The website has already been installed"));
         go_to_main_page();
         return;
     }
@@ -95,7 +95,7 @@ void Admin::install_treat() {
     // to avoid malicious people submitting directly the form
     // to this page
     if (usersModel->admin_exists()) {
-        set_message(_("The website has already been installed"));
+        add_warning(_("The website has already been installed"));
         go_to_main_page();
         return;
     }
@@ -104,7 +104,7 @@ void Admin::install_treat() {
     form.load(context());
 
     if (!form.validate()) {
-        set_message(_("Error while validating form."));
+        add_error(_("Error while validating form."));
         go_back_to_previous_page();
         return;
     }
@@ -124,7 +124,7 @@ void Admin::install_treat() {
     );
     
     if (blogResult < 0 ) {
-        set_message(_("Problem while trying to save the blog information"));
+        add_error(_("Problem while trying to save the blog information"));
         go_back_to_previous_page();
         return;
     }
@@ -141,7 +141,7 @@ void Admin::install_treat() {
         );
                     
         if (adminResult < 0) {
-            set_message(
+            add_error(
                 _("Problem while trying to save the admin information")
             );
             go_back_to_previous_page();
@@ -154,11 +154,11 @@ void Admin::install_treat() {
     );
     
     if (!setAsAdmin) {
-        set_message(_("Problem while trying to set the user as admin"));
+        add_error(_("Problem while trying to set the user as admin"));
         go_back_to_previous_page();
         return;
     }
-    set_message(_("Blog successfully configurated")); 
+    add_success(_("Blog successfully configurated")); 
     go_to_main_page(); 
 
 }
