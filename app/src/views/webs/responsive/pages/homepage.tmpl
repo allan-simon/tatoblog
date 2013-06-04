@@ -1,7 +1,7 @@
 <% c++ #include "contents/Pages.h" %>
 <% skin %>
 <% view homepage uses tatoblog::contents::pages::Homepage extends master %>
-<% template title() %><% gt "New Website"  %><% end template %>
+<% template head_title() %><%= blog.title %><% end template %>
 
 <% template main_content() %> 
     <% foreach post in posts %>

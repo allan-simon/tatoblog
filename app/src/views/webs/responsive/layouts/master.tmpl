@@ -75,6 +75,14 @@
 
 
 /**
+ * @brief define the title tag for the page
+ *
+ * @since 5 June 2013
+ */
+<% template head_title() %><% include title() %> | <%= blog.title %><% end template %>
+
+
+/**
  *
  */
 <% template title() %>TODO: replace this<% end template %>
@@ -84,7 +92,7 @@
  */
 <% template head() %>
     <meta charset="utf-8">
-    <title><% include title() %> | <%= blog.title %></title>
+    <title><% include head_title() %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<% include description() %>">
     <meta name="author" content="<% include author() %>">
