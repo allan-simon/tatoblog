@@ -71,7 +71,7 @@ Users::~Users() {
  */
 void Users::logout() {
     current_user_logout();
-    set_message(_("Logout"));
+    add_info(_("Logout"));
     go_back_to_previous_page();
 
 }
@@ -113,7 +113,7 @@ void Users::login_treat() {
     const std::string username = form.username.value();
 
     if (!form.validate()) {
-        set_message(_("Form didn't validate"));
+        add_error(_("Form didn't validate"));
         go_back_to_previous_page();
     }
 
@@ -131,12 +131,12 @@ void Users::login_treat() {
         // on the login page
         // TODO the message is not displayed try to see why
         // certainly due to successive redirection
-        set_message(_("Login"));
+        add_success(_("Login"));
         redirect(
             form.previousUrl.value()
         );
     } else {
-        set_message(_("Password incorrect"));
+        add_error(_("Password incorrect"));
         go_back_to_previous_page();
     } 
 

@@ -80,7 +80,7 @@ void Posts::show(const std::string slug) {
     );
     
     if (!c.post.exists()) {
-        set_message(_("This article does not exists"));
+        add_error(_("This article does not exists"));
         go_to_main_page();
         return;
     }
@@ -120,7 +120,7 @@ void Posts::write_new_treat() {
     form.load(context());
     if (!form.validate()) {
         //TODO add a more precise message
-        set_message(_("The form is not valid."));
+        add_error(_("The form is not valid."));
         go_back_to_previous_page();
         return;
     }
@@ -143,21 +143,21 @@ void Posts::write_new_treat() {
     );
 
     if (postId <= 0) {
-        set_message(_("Error while trying to add the post"));
+        add_error(_("Error while trying to add the post"));
         go_back_to_previous_page();
         return;
     } else if (form.saveAsDraft.value()){
-        set_message(_("Post created and saved as draft"));
+        add_success(_("Post created and saved as draft"));
         //TODO replace this redirection
         redirect("/posts/show/"+slug);
         return;
     } else if (form.publishAndShow.value()) {
-        set_message(_("Post created published"));
+        add_success(_("Post created published"));
         redirect("/posts/show/"+slug);
         return;
     }
     // we're not supposed to arrive here
-    set_message(_("Unknown error"));
+    add_success(_("Unknown error"));
     go_back_to_previous_page();
 }
 
