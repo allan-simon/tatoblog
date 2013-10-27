@@ -26,6 +26,7 @@
 #include <cppcms/session_interface.h>
 #include <cppcms_skel/generics/Config.h>
 #include <cppcms_skel/models/Users.h>
+#include <cppcms_skel/results/Users.h>
 
 #include "Admin.h"
 
@@ -137,7 +138,8 @@ void Admin::install_treat() {
         const int adminResult = usersModel->add(
             adminName,
             password,
-            "" // TODO: empty email, replace it by a field in the form
+            "", // TODO: empty email, replace it by a field in the form
+            cppcmsskel::results::User::Permission::admin
         );
                     
         if (adminResult < 0) {
@@ -148,16 +150,7 @@ void Admin::install_treat() {
             return;
         }
     }
-    const bool setAsAdmin = usersModel->change_permission_level(
-        adminName,
-        USERS_ADMIN
-    );
-    
-    if (!setAsAdmin) {
-        add_error(_("Problem while trying to set the user as admin"));
-        go_back_to_previous_page();
-        return;
-    }
+
     add_success(_("Blog successfully configurated")); 
     go_to_main_page(); 
 

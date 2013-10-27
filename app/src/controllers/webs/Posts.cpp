@@ -98,7 +98,7 @@ void Posts::show(const std::string slug) {
  */
 void Posts::write_new() {
 
-    CHECK_PERMISSION_OR_GO_TO_LOGIN();
+    LOGIN_REQUIRED();
     
     contents::posts::WriteNew c;
     init_content(c);
@@ -114,7 +114,7 @@ void Posts::write_new() {
 void Posts::write_new_treat() {
 
     TREAT_PAGE();
-    CHECK_PERMISSION_OR_GO_TO_LOGIN();
+    LOGIN_REQUIRED();
 
     forms::posts::WriteNew form;
     form.load(context());

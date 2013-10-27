@@ -301,7 +301,7 @@
 
 
 
-
+<% template asset_url(std::string const& type, std::string const& file) %><% c++ out() << Config::get_assets_url(); %><%= type %>/<%= file %><% end template %>
 
 /**
  * @brief Used to generate a script tag for a javascript file
@@ -309,20 +309,20 @@
  * @since 20 March 2013
  */
 <% template js_link(std::string const& jsFile) %><script
-    src="<% c++ out() << Config::get_js_path(); %><%= jsFile %>"
+    src="<% include asset_url("js", jsFile) %>"
     type="text/javascript"
 ></script><% end template %>
 
 
 <% template css_link(std::string const& cssFile) %><link 
-    href="<% c++ out() << Config::get_css_path(); %><%= cssFile %>"
+    src="<% include asset_url("css", cssFile) %>"
     rel="stylesheet"
     type="text/css"
 /><% end template %>
 
 
-<% template img_tag(std::string const& imgFile, int width, int height, std::string const& alt) %><img
-    src="<% c++ out() << Config::get_img_path(); %><%= imgFile%>"
+<% template img_tag(std::string const& imgFile, unsigned width, unsigned height, std::string const& alt) %><img
+    src="<% include asset_url("img", imgFile) %>"
     width="<%= width %>"
     height="<%= height %>"
     alt="<%= alt %>"

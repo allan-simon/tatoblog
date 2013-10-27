@@ -45,51 +45,8 @@ int main(int argc,char ** argv)
 
     service app(argc, argv);
     /*load some conf defined variables*/
-    Config *conf = Config::get_instance();
+    Config::set_values(app.settings().at("TatoWiki"));
 
-    conf->sqlite3Path = app.settings().get<string>(
-        "tatoblog.sqlite3.path"
-    );
-    
-    Config::set_base_host(
-        app.settings().get<string>(
-            "skel.baseHost"
-        )
-    );
-
-    Config::set_css_path(
-        app.settings().get<string>(
-            "skel.cssPath"
-        )
-    );
-
-    Config::set_img_path(
-        app.settings().get<string>(
-            "skel.imgPath"
-        )
-    );
-
-    Config::set_js_path(
-        app.settings().get<string>(
-            "skel.jsPath"
-        )
-    );
-
-    Config::set_inner_css_folder(
-        app.settings().get<string>(
-            "skel.innerCssFolder"
-        )
-    );
-
-    Config::set_inner_img_folder(
-        app.settings().get<string>(
-            "skel.innerImgFolder"
-        )
-    );
-
-
-
-        
     /*start the graph database*/
 
     //singletons::ActionId::get_instance();
