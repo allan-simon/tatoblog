@@ -246,8 +246,8 @@
  */
 <% template global_css() %>
     <!-- Le styles -->
-    <% include css_link("external/bootstrap.min.css") %>
-    <% include css_link("layouts/default.css") %>
+    <% include css_link("skins/responsive/css/external/bootstrap.min.css") %>
+    <% include css_link("skins/responsive/css/layouts/default.css") %>
 <% end template %>
 
 
@@ -294,8 +294,8 @@
  * @since 20 March 2013
  */
 <% template footer_js() %>
-<% include js_link("external/jquery.min.js") %>
-<% include js_link("external/bootstrap.min.js") %>
+<% include js_link("skins/responsive/js/external/jquery.min.js") %>
+<% include js_link("skins/responsive/js/external/bootstrap.min.js") %>
 <% end template %>
 
 
@@ -315,7 +315,7 @@
 
 
 <% template css_link(std::string const& cssFile) %><link 
-    src="<% include asset_url("css", cssFile) %>"
+    href="<% include asset_url("css", cssFile) %>"
     rel="stylesheet"
     type="text/css"
 /><% end template %>

@@ -61,6 +61,7 @@ TatoBlog::TatoBlog(cppcms::service &serv) :
     posts(serv),
     
     img(serv),
+    js(serv),
     css(serv),
     pages(serv)
 {
@@ -76,6 +77,7 @@ TatoBlog::TatoBlog(cppcms::service &serv) :
 
     add(css,"^/css(.*)",1);
     add(img,"^/img(.*)",1);
+    add(js,"^/js(.*)",1);
     //NOTE important to add the page controller at the end
     //as its regexp is more global
     //TODO for SEO reason, try to find a way to be sure to access the

@@ -37,6 +37,7 @@
 
 #include <cppcms_skel/controllers/webs/Img.h>
 #include <cppcms_skel/controllers/webs/Css.h>
+#include <cppcms_skel/controllers/webs/Js.h>
 
 #include "controllers/webs/Posts.h"
 #include "controllers/webs/Admin.h"
@@ -64,6 +65,7 @@ private:
     controllers::webs::Posts posts;
     ::controllers::webs::Img img;
     ::controllers::webs::Css css;
+    ::controllers::webs::Js js;
     controllers::webs::Pages pages;
 
     /**
