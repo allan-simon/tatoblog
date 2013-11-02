@@ -8,7 +8,7 @@
  */
 <% view post_edition uses tatoblog::contents::BaseContent extends master %>
 
-<% template save_buttons(forms::posts::WriteNew & form) %>
+<% template save_buttons(tatoblog::forms::posts::WriteNew & form) %>
     <div class="submit">
 
         <% form input form.saveAsDraft %>

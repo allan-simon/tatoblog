@@ -31,6 +31,7 @@
 
 #include <cppcms/form.h>
 
+namespace tatoblog {
 namespace forms{
 namespace posts {
 
@@ -108,7 +109,8 @@ struct WriteNew : public cppcms::form {
 
 
 } // end of namespace posts
-}// end of namespace forms
+} // end of namespace forms
+} // end of namespace tatoblog
 
 
 #endif

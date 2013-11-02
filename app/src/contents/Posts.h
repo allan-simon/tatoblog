@@ -30,6 +30,7 @@
 #include "cppcms_skel/contents/content.h"
 
 #include "contents/forms/write_new.h"
+#include "contents/forms/edit.h"
 //%%%NEXT_CONTENT_FORM_INCLUDE_MARKER%%%
 #include "BaseContent.h"
 #include "results/Posts.h"
@@ -119,6 +120,23 @@ struct ShowAll : public Posts {
 
 };
 
+
+/**
+ * @struct Edit
+ * @since  02 November 2013
+ * @brief 
+ */
+struct Edit : public Posts {
+
+    forms::posts::Edit editForm;
+
+    /**
+     * @brief Constructor
+     */
+    Edit() {
+    }
+
+};
 
 //%%%NEXT_CONTENT_MARKER%%%
 
