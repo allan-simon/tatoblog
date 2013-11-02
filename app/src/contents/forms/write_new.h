@@ -27,9 +27,7 @@
 #ifndef TATOBLOG_WRITE_NEW
 #define TATOBLOG_WRITE_NEW
 
-#define _(X) cppcms::locale::translate(X)
-
-#include <cppcms/form.h>
+#include "contents/forms/base_post_form.h"
 
 namespace tatoblog {
 namespace forms{
@@ -40,68 +38,12 @@ namespace posts {
  * @since  26 March 2013
  *
  */
-struct WriteNew : public cppcms::form {
-
-    //%%%NEXT_WIDGET_VAR_MARKER%%%
-       
-    /**
-     * @brief text field to choose what will be the title
-     *        of the post
-     *
-     * @since 2 April 2013
-     */
-    cppcms::widgets::text title;
-     
-    /**
-     * @brief text field to choose what will be the slug
-     *        of the post
-     *
-     * @since 26 March 2013
-     */
-    cppcms::widgets::text slug;
-    cppcms::widgets::textarea introduction;
-    cppcms::widgets::textarea main;
-
-    /**
-     * @brief button to publish the article and view it
-     */
-    cppcms::widgets::submit publishAndShow;
-    cppcms::widgets::submit saveAsDraft;
-
+struct WriteNew : public BasePost {
     /**
      * @brief Constructor
      */
-    WriteNew() {
-
-        //%%%NEXT_WIDGET_ADD_MARKER%%%
-        title.name("title");
-        title.message(_("Title"));
-        title.non_empty();
-        add(title); 
-        
-        slug.name("slug");
-        slug.message(_("Slug (URL message)"));
-        slug.non_empty();
-        add(slug);
-        
-        
-        introduction.name("introduction");
-        introduction.message(_("Introduction"));
-        introduction.non_empty();
-        add(introduction);
-
-        main.name("main");
-        main.message(_( "Main content"));
-        add(main);
-
-        publishAndShow.name(_("Publish and show"));
-        publishAndShow.value("publishAndShow");
-        add(publishAndShow);
-       
-        saveAsDraft.name(_("Save as draft"));
-        saveAsDraft.value("saveAsDraft");
-        add(saveAsDraft);
-
+    WriteNew() : BasePost() {
+        init_and_add();
     }
 
 
