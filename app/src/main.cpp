@@ -45,7 +45,7 @@ int main(int argc,char ** argv)
 
     service app(argc, argv);
     /*load some conf defined variables*/
-    Config::set_values(app.settings().at("TatoWiki"));
+    Config::set_values(app.settings().at("tatoblog"));
 
     /*start the graph database*/
 

@@ -26,16 +26,6 @@
             "storage" : "memory"
         }
     },
-    "skel" : {
-        "baseHost" : "http://127.0.0.1:8080",
-        "innerCssFolder" : "../resources/skins/responsive/css/",
-        "innerImgFolder" : "../resources/skins/responsive/img/",
-        "innerJsFolder" : "../resources/skins/responsive/js/",
-        "imgPath" : "/img/",
-        "cssPath" : "/css/",
-        "jsPath" : "/js/"
-
-    },
 	"tatoblog" : {
         "interfacelangs" : [
             ["en"  , "en_GB.UTF-8", "English", "English"],
@@ -43,10 +33,15 @@
         ],
         "sqlite3" : {
             "path" : "../data/sqlite3.db"
-        }
+        },
+        "baseHost" : "http://127.0.0.1:8080",
+        "assetsFolder" : "../resources/",
+        "assetsURL" : "/",
+        "uploadFolder" : "../upload/",
+        "uploadURL" : "/media/get"
 	},
    "views" : {
         "default_skin" : "responsive"
-    },
+    }
 
 }
