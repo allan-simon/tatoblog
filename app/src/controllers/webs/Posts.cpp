@@ -49,7 +49,11 @@ Posts::Posts(cppcms::service& serv) : Controller(serv)
     dispatcher().assign("/write-new", &Posts::write_new, this);
     dispatcher().assign("/write-new_treat", &Posts::write_new_treat, this);
     dispatcher().assign("/show-all", &Posts::show_all, this);
+
+    dispatcher().assign("/edit", &Posts::edit, this);
+    dispatcher().assign("/edit_treat", &Posts::edit_treat, this);
     //%%%NEXT_ACTION_DISPATCHER_MARKER%%%, do not delete
+
 
 
     postsModel = new models::Posts();
@@ -173,6 +177,34 @@ void Posts::show_all() {
 
     render("posts_show_all", c);
 }
+
+/**
+ *
+ */
+void Posts::edit() {
+
+    contents::posts::Edit c;
+    init_content(c);
+
+
+    render("posts_edit", c);
+}
+
+
+/**
+ *
+ */
+void Posts::edit_treat() {
+
+    forms::posts::Edit form;
+    form.load(context());
+
+    if (!form.validate()) {
+        go_back_to_previous_page();
+    }
+
+}
+
 
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 

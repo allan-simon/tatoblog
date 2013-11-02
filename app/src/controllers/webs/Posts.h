@@ -100,6 +100,18 @@ class Posts : public Controller {
         void show_all();
 
 
+        /**
+         * @brief @TODO add a description
+         * @since 02 November 2013
+         */
+        void edit();
+
+        /**
+         * @brief @TODO add a description
+         * @since 02 November 2013
+         */
+        void edit_treat();
+
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 
 };
