@@ -154,13 +154,13 @@
 <% end template %>
 
 <% template navigation_menu() %>
-<!--
-<ul class="nav">
-    <li class="active">
-        <a href="/"><% gt "Home" %></a>
-    </li>
-</ul>
-!-->
+    <% if currentUserHelper.is_logged() %>
+        <ul class="nav">
+            <li >
+                <a href="/posts/write-new"><% gt "New post" %></a>
+            </li>
+        </ul>
+    <% end if %>
 <% end template %>
 
 <% template user_menu() %>
