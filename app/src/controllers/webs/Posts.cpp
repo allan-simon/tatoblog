@@ -146,17 +146,13 @@ void Posts::write_new_treat() {
 
     if (form.saveAsDraft.value()){
         add_success(_("Post created and saved as draft"));
-        redirect(
-            post_show_url(post)
-        );
+        redirect(post.show_url());
         return;
     }
 
     if (form.publishAndShow.value()) {
         add_success(_("Post created published"));
-        redirect(
-            post_show_url(post)
-        );
+        redirect(post.show_url());
         return;
     }
     // we're not supposed to arrive here
@@ -234,24 +230,10 @@ void Posts::edit_treat() {
     }
 
     add_success(_("Post edited"));
-    redirect(
-        post_show_url(post)
-    );
+    redirect(post.show_url());
 }
-
-/**
- *
- */
-const std::string Posts::post_show_url(
-    const results::Post post
-) const {
-    return "/posts/show/" + post.slug;
-}
-
 
 // %%%NEXT_ACTION_MARKER%%% , do not delete
-
-
 
 } // End namespace webs
 } // End namespace controllers

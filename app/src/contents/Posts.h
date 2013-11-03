@@ -129,11 +129,12 @@ struct ShowAll : public Posts {
 struct Edit : public Posts {
 
     forms::posts::Edit editForm;
+    results::Post post;
 
     /**
      * @brief Constructor
      */
-    Edit(results::Post post) : editForm(post) {
+    Edit(const results::Post &_post) : editForm(_post), post(_post) {
     }
 
 };

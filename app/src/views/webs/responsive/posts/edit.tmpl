@@ -12,5 +12,21 @@
 </div>
 <% end template %>
 
+<% template annexe_content() %> 
+<% include begin_module() %>
+    <h2><% gt "Menu" %></h2>
+
+    <ul>
+        <li>
+            <a href='<%= post.show_url() %>'>
+                <% gt "Go back to post" %>
+            </a>
+        </li>
+    </ul>
+<% include end_module() %>
+<% end template %>
+
+
+
 <% end view %>
 <% end skin %>

@@ -27,9 +27,6 @@
 #define TATOBLOGCONTROLLERS_WEBS_POSTS_H
 
 #include "Controller.h"
-#include "results/Posts.h"
-
-
 
 namespace tatoblog {
 //needed to avoid to include models directly here,
@@ -116,17 +113,6 @@ class Posts : public Controller {
          * @since 02 November 2013
          */
         void edit_treat();
-
-
-        /**
-         * Take a post and get the url to show it
-         *
-         * @param post The post to get the url from
-         * @since 3 November 2013
-         */
-        const std::string post_show_url (
-            const results::Post post
-        ) const;
 
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 

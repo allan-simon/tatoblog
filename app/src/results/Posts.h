@@ -89,6 +89,22 @@ namespace results {
             main(main)
         {
         };
+
+
+        /**
+         *
+         */
+        const std::string edit_url() const {
+            return "/posts/edit/" + slug;
+        }
+
+        /**
+         *
+         */
+        const std::string show_url() const {
+            return "/posts/show/" + slug;
+        }
+
     };
 
     typedef std::vector<results::Post> Posts;

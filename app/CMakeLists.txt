@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.6)
 project(tatoblog)
 
 # set the version
-set(PROJECT_VERSION "0.6.0")
+set(PROJECT_VERSION "0.6.2")
 set(ARCHIVE_NAME ${CMAKE_PROJECT_NAME}-${PROJECT_VERSION})
 add_custom_target(
     dist

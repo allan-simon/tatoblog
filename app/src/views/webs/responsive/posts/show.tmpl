@@ -14,6 +14,20 @@
 <%end cache %>
 <% end template %>
 
+<% template annexe_content() %> 
+<% include begin_module() %>
+    <h2><% gt "Menu" %></h2>
+
+    <ul>
+        <li>
+            <a href='<%= post.edit_url() %>'>
+                <% gt "Edit post" %>
+            </a>
+        </li>
+    </ul>
+<% include end_module() %>
+<% end template %>
+
 
 
 <% end view %>
