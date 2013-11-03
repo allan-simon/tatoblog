@@ -25,6 +25,9 @@
 #ifndef TATOBLOG_RESULTS_POSTS_H
 #define TATOBLOG_RESULTS_POSTS_H
 
+
+#define POST_NOT_COMPLETELY_INIT -42
+
 #include <vector>
 #include <map>
 #include <string>
@@ -58,6 +61,16 @@ namespace results {
         bool exists() {
             return id > 0;
         };
+
+
+        /**
+         * Get string used for cache to identify a post
+         * @return string Key to identify a post
+         * @since 3 November 2013
+         */
+        const std::string cache_key() {
+            return lang + slug;
+        }
 
         Post() {};
         Post(

@@ -49,11 +49,7 @@ Posts::Posts() :
  *
  */
 int Posts::create(
-    const std::string &title,
-    const std::string &slug,
-    const std::string &introduction,
-    const std::string &main,
-    const std::string &lang,
+    const results::Post &post,
     const int userId
 ) {
     cppdb::statement statement = sqliteDb.prepare(
@@ -75,11 +71,11 @@ int Posts::create(
         ")"
     );
     
-    statement.bind(title);
-    statement.bind(slug);
-    statement.bind(introduction);
-    statement.bind(main);
-    statement.bind(lang);
+    statement.bind(post.title);
+    statement.bind(post.slug);
+    statement.bind(post.introduction);
+    statement.bind(post.main);
+    statement.bind(post.lang);
     statement.bind(userId);
 
     if (!execute_simple(statement)) {
@@ -162,6 +158,41 @@ results::Post Posts::get_from_result(
     }
     return post;
 }
+
+/**
+ *
+ */
+int Posts::edit(
+    const results::Post &post
+) {
+    cppdb::statement statement = sqliteDb.prepare(
+        "UPDATE posts "
+        "SET"
+        "    title = ?,"
+        "    slug = ?,"
+        "    introduction = ?,"
+        "    main = ?,"
+        "    lang = ?"
+        "WHERE "
+        "    id = ? "
+    );
+
+    // update part
+    statement.bind(post.title);
+    statement.bind(post.slug);
+    statement.bind(post.introduction);
+    statement.bind(post.main);
+    statement.bind(post.lang);
+
+    // where part
+    statement.bind(post.id);
+
+    if (!execute_simple(statement)) {
+        return POST_EDITION_ERROR;
+    }
+    return 1;
+}
+
 
 
 

@@ -27,12 +27,15 @@
 #define TATOBLOGCONTROLLERS_WEBS_POSTS_H
 
 #include "Controller.h"
+#include "results/Posts.h"
 
 
 
 namespace tatoblog {
 //needed to avoid to include models directly here,
-//which would have the side effects to require to recompile the// controller every time we modify a model. even though it does// not affect the controller
+//which would have the side effects to require to recompile the
+// controller every time we modify a model. even though it does
+// not affect the controller
 namespace models {
     class Posts;
     // %%%NEXT_CLASS_MODEL_CTRL_MARKER%%% 
@@ -101,16 +104,29 @@ class Posts : public Controller {
 
 
         /**
-         * @brief @TODO add a description
+         * @brief Display a page to edit a given post
+         * @param slug The article slug
          * @since 02 November 2013
          */
-        void edit();
+        void edit(const std::string slug);
 
         /**
-         * @brief @TODO add a description
+         * @brief Display nothing, only here to treat the form
+         * used to edit a post
          * @since 02 November 2013
          */
         void edit_treat();
+
+
+        /**
+         * Take a post and get the url to show it
+         *
+         * @param post The post to get the url from
+         * @since 3 November 2013
+         */
+        const std::string post_show_url (
+            const results::Post post
+        ) const;
 
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 

@@ -1,6 +1,6 @@
 /**
  * Tatoblog  A blog platform in C++
- * Copyright (C) 2013 Allan Simon <allan.simon@supinfo.com> 
+ * Copyright (C) 2013 Allan Simon <allan.simon@supinfo.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,7 +18,7 @@
  *
  * @category Tatoblog
  * @package  Controllers
- * @author   Allan Simon <allan.simon@supinfo.com> 
+ * @author   Allan Simon <allan.simon@supinfo.com>
  * @license  Affero General Public License
  * @link     https://github.com/allan-simon/tatoblog@
  */
@@ -50,7 +50,7 @@ Posts::Posts(cppcms::service& serv) : Controller(serv)
     dispatcher().assign("/write-new_treat", &Posts::write_new_treat, this);
     dispatcher().assign("/show-all", &Posts::show_all, this);
 
-    dispatcher().assign("/edit", &Posts::edit, this);
+    dispatcher().assign("/edit/(.*)", &Posts::edit, this, 1);
     dispatcher().assign("/edit_treat", &Posts::edit_treat, this);
     //%%%NEXT_ACTION_DISPATCHER_MARKER%%%, do not delete
 
@@ -77,21 +77,21 @@ void Posts::show(const std::string slug) {
     init_content(c);
     std::string lang = get_interface_lang();
 
-    
+
     c.post  = postsModel->get_from_lang_and_slug(
         lang,
         slug
     );
-    
+
     if (!c.post.exists()) {
         add_error(_("This article does not exists"));
         go_to_main_page();
         return;
     }
-    
+
     c.markdown = mymarkdown;
-    c.cacheKey = lang + slug;
- 
+    c.cacheKey = c.post.cache_key();
+
 
 
     render("posts_show", c);
@@ -103,7 +103,7 @@ void Posts::show(const std::string slug) {
 void Posts::write_new() {
 
     LOGIN_REQUIRED();
-    
+
     contents::posts::WriteNew c;
     init_content(c);
 
@@ -128,21 +128,13 @@ void Posts::write_new_treat() {
         go_back_to_previous_page();
         return;
     }
-    
-    // we retrieve the information in the form
-    const std::string title = form.title.value();
-    const std::string slug = form.slug.value();
-    const std::string introduction = form.introduction.value();
-    const std::string main = form.main.value();
 
-    
+    results::Post post = form.get_post();
+    post.lang = get_interface_lang();
+
     //we save in the database
     const int postId = postsModel->create(
-        title,
-        slug,
-        introduction,
-        main,
-        "en", // TODO replace this
+        post,
         get_current_user_id()
     );
 
@@ -150,18 +142,25 @@ void Posts::write_new_treat() {
         add_error(_("Error while trying to add the post"));
         go_back_to_previous_page();
         return;
-    } else if (form.saveAsDraft.value()){
+    }
+
+    if (form.saveAsDraft.value()){
         add_success(_("Post created and saved as draft"));
-        //TODO replace this redirection
-        redirect("/posts/show/"+slug);
+        redirect(
+            post_show_url(post)
+        );
         return;
-    } else if (form.publishAndShow.value()) {
+    }
+
+    if (form.publishAndShow.value()) {
         add_success(_("Post created published"));
-        redirect("/posts/show/"+slug);
+        redirect(
+            post_show_url(post)
+        );
         return;
     }
     // we're not supposed to arrive here
-    add_success(_("Unknown error"));
+    add_error(_("Unknown error"));
     go_back_to_previous_page();
 }
 
@@ -181,11 +180,24 @@ void Posts::show_all() {
 /**
  *
  */
-void Posts::edit() {
+void Posts::edit(
+    const std::string slug
+) {
 
-    contents::posts::Edit c;
+    LOGIN_REQUIRED();
+
+    const std::string lang = get_interface_lang();
+
+    results::Post post = postsModel->get_from_lang_and_slug(
+        lang,
+        slug
+    );
+
+    cache().rise(post.cache_key());
+
+    contents::posts::Edit c(post);
+
     init_content(c);
-
 
     render("posts_edit", c);
 }
@@ -196,13 +208,44 @@ void Posts::edit() {
  */
 void Posts::edit_treat() {
 
+    TREAT_PAGE();
+    LOGIN_REQUIRED();
+
     forms::posts::Edit form;
     form.load(context());
 
     if (!form.validate()) {
+        //TODO add a more precise message
+        add_error(_("The form is not valid."));
         go_back_to_previous_page();
+        return;
     }
 
+    results::Post post = form.get_post();
+
+    const int returnCode = postsModel->edit(
+        post
+    );
+
+    if (returnCode < 0) {
+        add_error(_("Problem while saving post."));
+        go_back_to_previous_page();
+        return;
+    }
+
+    add_success(_("Post edited"));
+    redirect(
+        post_show_url(post)
+    );
+}
+
+/**
+ *
+ */
+const std::string Posts::post_show_url(
+    const results::Post post
+) const {
+    return "/posts/show/" + post.slug;
 }
 
 

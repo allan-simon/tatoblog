@@ -28,7 +28,7 @@
 #define TATOBLOG_EDIT
 
 
-#include <cppcms/form.h>
+#include "contents/forms/base_post_form.h"
 
 namespace tatoblog {
 namespace forms{
@@ -40,29 +40,25 @@ namespace posts {
  * @since  02 November 2013
  *
  */
-struct Edit : public cppcms::form {
-
-    //%%%NEXT_WIDGET_VAR_MARKER%%%
-
-    /**
-     * @brief button to submit the form
-     */
-    cppcms::widgets::submit submit;
+struct Edit : public BasePost {
 
     /**
      * @brief Constructor
      */
-    Edit() {
 
-        //%%%NEXT_WIDGET_ADD_MARKER%%%
-
-        add(submit);
-        submit.name(
-            cppcms::locale::translate("submit")
-        );
-        submit.value("submit");
+    Edit() : BasePost() {
+        init_and_add();
     }
 
+    Edit(results::Post post) : BasePost() {
+        init_and_add();
+        id.value(std::to_string(post.id));
+        lang.value(post.lang);
+        title.value(post.title);
+        slug.value(post.slug);
+        introduction.value(post.introduction);
+        main.value(post.main);
+    }
 
 };
 

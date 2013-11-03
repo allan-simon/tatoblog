@@ -8,7 +8,7 @@
  */
 <% view post_edition uses tatoblog::contents::BaseContent extends master %>
 
-<% template save_buttons(tatoblog::forms::posts::WriteNew & form) %>
+<% template save_buttons(tatoblog::forms::posts::BasePost & form) %>
     <div class="submit">
 
         <% form input form.saveAsDraft %>
@@ -19,6 +19,18 @@
 <% end template %>
 
 
+<% template inner_form(tatoblog::forms::posts::BasePost & form) %>
+    <% form input form.id %>
+    <% form input form.lang %>
+    <table>
+        <% include widget_row(form.title) %>
+        <% include widget_row(form.slug) %>
+        <% include widget_row(form.introduction) %>
+        <% include widget_row(form.main) %>
+    </table>
+    <% include save_buttons(form) %>
+
+<% end template %>
 
 
 

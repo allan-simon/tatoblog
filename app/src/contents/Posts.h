@@ -133,7 +133,7 @@ struct Edit : public Posts {
     /**
      * @brief Constructor
      */
-    Edit() {
+    Edit(results::Post post) : editForm(post) {
     }
 
 };

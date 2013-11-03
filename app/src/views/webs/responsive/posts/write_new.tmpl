@@ -8,16 +8,11 @@
 <div class="module">
     <h2><% gt "Create a new post" %></h2>
     <form method="POST" action="/posts/write-new_treat" >
-        <table>
-            <% include widget_row(writeNewForm.title) %>
-            <% include widget_row(writeNewForm.slug) %>
-            <% include widget_row(writeNewForm.introduction) %>
-            <% include widget_row(writeNewForm.main) %>
-        </table>
-        <% include save_buttons(writeNewForm) %>
+        <% include inner_form(writeNewForm) %>
     </form>
 </div>
 <% end template %>
+
 
 
 

@@ -1,14 +1,16 @@
 <% c++ #include "contents/Posts.h" %>
 <% skin %>
-<% view posts_edit uses tatoblog::contents::posts::Edit extends master %>
-<% template title() %><% gt "TODO TITLE" %><% end template %>
+<% view posts_edit uses tatoblog::contents::posts::Edit extends post_edition %>
+<% template title() %><% gt "Edit post" %><% end template %>
 
-
-<% template body() %> 
-    Edit Me Posts / Edit
+<% template main_content() %> 
+<div class="module">
+    <h2><% gt "Create a new post" %></h2>
+    <form method="POST" action="/posts/edit_treat" >
+        <% include inner_form(editForm) %>
+    </form>
+</div>
 <% end template %>
-
-
 
 <% end view %>
 <% end skin %>

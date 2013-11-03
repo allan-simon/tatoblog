@@ -23,16 +23,37 @@
  * @link     https://github.com/allan-simon/tatoblog@
  */
 
+#ifndef TATOBLOG_BASEPOST_FORM
+#define TATOBLOG_BASEPOST_FORM
+
+
+
 #define _(X) cppcms::locale::translate(X)
 
 #include <cppcms/form.h>
+
+#include "results/Posts.h"
 
 namespace tatoblog {
 namespace forms{
 namespace posts {
 
 struct BasePost : public cppcms::form {
-       
+
+    /**
+     * Widget to contain the language in which the article is  written
+     *
+     * @since 3 November 2013
+     */
+    cppcms::widgets::hidden lang;
+
+    /**
+     * Widget to contain the id of a post
+     *
+     * @since 3 November 2013
+     */
+    cppcms::widgets::hidden id;
+
     /**
      * @brief text field to choose what will be the title
      *        of the post
@@ -40,7 +61,7 @@ struct BasePost : public cppcms::form {
      * @since 2 April 2013
      */
     cppcms::widgets::text title;
-     
+
     /**
      * @brief text field to choose what will be the slug
      *        of the post
@@ -72,6 +93,12 @@ struct BasePost : public cppcms::form {
      */
     void init() {
         //%%%NEXT_WIDGET_ADD_MARKER%%%
+
+        lang.name("lang");
+
+        id.name("id");
+        id.value(std::to_string(POST_NOT_COMPLETELY_INIT));
+
         title.name("title");
         title.message(_("Title"));
         title.non_empty();
@@ -105,6 +132,8 @@ struct BasePost : public cppcms::form {
     void init_and_add() {
         init();
 
+        add(id);
+        add(lang);
         add(title); 
         add(slug);
         add(introduction);
@@ -113,6 +142,22 @@ struct BasePost : public cppcms::form {
         add(saveAsDraft);
     }
 
+    /**
+     * Create a Post object out of the form
+     * @since 3 November 2013
+     */
+    results::Post get_post() {
+        return results::Post(
+            std::stoi(id.value()),
+            lang.value(),
+            slug.value(),
+            title.value(),
+            introduction.value(),
+            main.value()
+        );
+    }
+
+
 };
 
 } // end of namespace posts
@@ -120,4 +165,5 @@ struct BasePost : public cppcms::form {
 } // end of namespace tatoblog
 
 
+#endif
 

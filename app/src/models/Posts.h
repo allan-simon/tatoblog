@@ -32,6 +32,8 @@
 #include "results/Posts.h"
 
 #define POST_CREATION_ERROR -1
+#define POST_EDITION_ERROR -2
+
 namespace tatoblog {
 namespace models {
 
@@ -54,23 +56,14 @@ class Posts : public cppcmsskel::models::SqliteModel {
         /**
          * @brief Create a new article in the database
          *
-         * @param title         The title of the new post
-         * @param slug          URL of the post
-         * @param introduction  Text that will displayed in list
-         *                      of posts 
-         * @param main          The main text of the post
-         * @param lang          Lang in which the article is written
+         * @param post          a post with all field filled, except post.id
          * @param userId        Id of the user who has written the article 
          *
          * @return The id of the newly created Post, or a negative
          *         number in case of failure
          */
         int create(
-            const std::string &title,
-            const std::string &slug,
-            const std::string &introduction,
-            const std::string &main,
-            const std::string &lang = "en",
+            const results::Post &post,
             const int userId = 0
         );
         
@@ -101,6 +94,19 @@ class Posts : public cppcmsskel::models::SqliteModel {
          * @since 22 Avril 2013
          */
         results::Posts get_all(void);
+
+        /**
+         * Update a post to new values
+         * 
+         * @param post Post containing the new values to reflect
+         *             on the database
+         * @return int a code to express if the update was
+         *             successfull or not
+         * @since 3 November 2013
+         */
+        int edit(
+            const results::Post &post
+        );
 
     private:
         /**
