@@ -54,6 +54,8 @@ namespace apps {
 TatoBlog::TatoBlog(cppcms::service &serv) :
     cppcms::application(serv),
     //%%%NEXT_MAIN_APP_CTRL_CONSTRUCT_MARKER%%%
+    drafts(serv),
+    
     users(serv),
     
     admin(serv),
@@ -73,6 +75,7 @@ TatoBlog::TatoBlog(cppcms::service &serv) :
     add(posts,"^/posts(.*)",1);
     add(admin,"^/admin(.*)",1);
     add(users,"^/users(.*)",1);
+    add(drafts,"^/drafts(.*)",1);
     //%%%NEXT_CONTROLLER_DISPATCHER_MARKER%%%, do not delete
 
     add(css,"^/css(.*)",1);

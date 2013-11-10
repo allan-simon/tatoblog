@@ -3,6 +3,7 @@ begin;
     drop table if exists posts;
     drop table if exists users;
     drop table if exists salt;
+    drop table if exists drafts;
     drop table if exists blog;
 
     -- table representing a user
@@ -35,6 +36,23 @@ begin;
         unique(lang,slug)
     );
     create index posts_user_id_idx on posts(user_id);
+
+    -- table to store draft, which are supposed to be exactly the same than a
+    -- post. The rational to make it as a separate tables rathen than a field
+    -- "is_draft" is that this way it does require to modify the Post model
+    -- and it make easy to activate/deactivate this feature
+    -- of course I'm open to discussion on that
+    create table drafts (
+        id integer primary key autoincrement not null,
+        user_id  integer  not null default 0, 
+        lang text not null,                            -- code iso 639-3 alpha 3 in which the articles is written
+        slug text not null,                            -- "url" name of the article 
+        title text not null,                           -- title of the article 
+        introduction text not null,                         -- the content of the article itself
+        main text not null,                         -- the content of the article itself
+        unique(lang,slug)
+    );
+    create index drafts_user_id_idx on drafts(user_id);
 
 
 

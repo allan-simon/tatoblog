@@ -42,6 +42,7 @@
 #include "controllers/webs/Posts.h"
 #include "controllers/webs/Admin.h"
 #include "controllers/webs/Users.h"
+#include "controllers/webs/Drafts.h"
 //%%%NEXT_CONTROLLER_INCLUDE_MARKER%%%, do not delete
 #include "controllers/webs/Pages.h"
 
@@ -60,6 +61,7 @@ class TatoBlog : public cppcms::application {
 
 private:
     //%%%NEXT_MAIN_APP_CTRL_ATTR%%%
+    controllers::webs::Drafts drafts;
     controllers::webs::Users users;
     controllers::webs::Admin admin;
     controllers::webs::Posts posts;
