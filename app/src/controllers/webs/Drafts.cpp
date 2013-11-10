@@ -47,6 +47,8 @@ Drafts::~Drafts() {
  */
 void Drafts::show(const std::string slug) {
 
+    LOGIN_REQUIRED();
+
     contents::drafts::Show c;
     init_content(c);
     std::string lang = get_interface_lang();
