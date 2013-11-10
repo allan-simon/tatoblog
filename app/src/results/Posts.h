@@ -109,7 +109,7 @@ namespace results {
          *
          */
         const std::string draft_url() const {
-            return "/draft/show/" + slug;
+            return "/drafts/show/" + slug;
         }
 
     };
