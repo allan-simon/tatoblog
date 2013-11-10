@@ -16,6 +16,7 @@
 #include "contents/Drafts.h"
 
 #include "models/Drafts.h"
+#include "generics/markdown.h"
 //%%%NEXT_INC_MODEL_CTRL_MARKER%%%
 
 namespace tatoblog {
@@ -26,7 +27,7 @@ Drafts::Drafts(cppcms::service& serv) :
     controllers::webs::Controller(serv)
 {
 
-    dispatcher().assign("/show", &Drafts::show, this);
+    dispatcher().assign("/show/(.+)", &Drafts::show, this, 1);
     //%%%NEXT_ACTION_DISPATCHER_MARKER%%%, do not delete
 
     draftsModel = new models::Drafts();
@@ -44,10 +45,26 @@ Drafts::~Drafts() {
 /**
  *
  */
-void Drafts::show() {
+void Drafts::show(const std::string slug) {
 
     contents::drafts::Show c;
     init_content(c);
+    std::string lang = get_interface_lang();
+
+    c.post  = draftsModel->get_from_lang_and_slug(
+        lang,
+        slug
+    );
+
+    if (!c.post.exists()) {
+        add_error(_("This article does not exists"));
+        go_to_main_page();
+        return;
+    }
+
+    c.markdown = mymarkdown;
+    c.cacheKey = c.post.cache_key();
+
 
 
     render("drafts_show", c);

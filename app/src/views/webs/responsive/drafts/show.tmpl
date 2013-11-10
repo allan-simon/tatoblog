@@ -1,12 +1,35 @@
 <% c++ #include "contents/Drafts.h" %>
 <% skin %>
 <% view drafts_show uses tatoblog::contents::drafts::Show extends master %>
-<% template title() %><% gt "TODO TITLE" %><% end template %>
+<% template title() %><%= post.title %><% end template %>
 
 
-<% template body() %> 
-    Edit Me Drafts / Show
+<% template main_content() %> 
+<% cache cacheKey %>
+<% include begin_module() %>
+    <h1><%gt "This is a draft" %></h1>
+    <h1><%= post.title %></h1>
+    <%= post.introduction | ext markdown %>
+    <%= post.main | ext markdown %>
+<% include end_module() %>
+<%end cache %>
 <% end template %>
+
+<% template annexe_content() %> 
+<% include begin_module() %>
+    <h2><% gt "Menu" %></h2>
+
+    <ul>
+        <li>
+            <a href='<%= post.edit_url() %>'>
+                <% gt "Edit draft" %>
+            </a>
+        </li>
+    </ul>
+<% include end_module() %>
+<% end template %>
+
+
 
 
 
