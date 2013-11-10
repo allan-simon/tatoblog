@@ -105,6 +105,13 @@ namespace results {
             return "/posts/show/" + slug;
         }
 
+        /**
+         *
+         */
+        const std::string draft_url() const {
+            return "/draft/show/" + slug;
+        }
+
     };
 
     typedef std::vector<results::Post> Posts;

@@ -31,6 +31,8 @@
 #include "contents/Posts.h"
 
 #include "models/Posts.h"
+#include "models/Drafts.h"
+
 //%%%NEXT_INC_MODEL_CTRL_MARKER%%%
 
 #include "generics/markdown.h"
@@ -132,11 +134,29 @@ void Posts::write_new_treat() {
     results::Post post = form.get_post();
     post.lang = get_interface_lang();
 
+    const int currentUserId = get_current_user_id();
+    int postId = POST_NOT_INIT;
+    auto message = _("Post created and saved as draft");
+    std::string redirectUrl = post.draft_url();
+
     //we save in the database
-    const int postId = postsModel->create(
-        post,
-        get_current_user_id()
-    );
+
+    if (form.saveAsDraft.value()){
+        auto draftsModel = new models::Drafts();
+        postId = draftsModel->create(
+            post,
+            currentUserId
+        );
+    } else if (form.publishAndShow.value()) {
+
+        postId = postsModel->create(
+            post,
+            currentUserId
+        );
+
+        message = _("Post created published");
+        redirectUrl = post.show_url();
+    }
 
     if (postId <= 0) {
         add_error(_("Error while trying to add the post"));
@@ -144,20 +164,8 @@ void Posts::write_new_treat() {
         return;
     }
 
-    if (form.saveAsDraft.value()){
-        add_success(_("Post created and saved as draft"));
-        redirect(post.show_url());
-        return;
-    }
-
-    if (form.publishAndShow.value()) {
-        add_success(_("Post created published"));
-        redirect(post.show_url());
-        return;
-    }
-    // we're not supposed to arrive here
-    add_error(_("Unknown error"));
-    go_back_to_previous_page();
+    add_success(message);
+    redirect(redirectUrl);
 }
 
 /**
