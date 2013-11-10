@@ -26,6 +26,7 @@ Drafts::Drafts(cppcms::service& serv) :
     controllers::webs::Controller(serv)
 {
 
+    dispatcher().assign("/show", &Drafts::show, this);
     //%%%NEXT_ACTION_DISPATCHER_MARKER%%%, do not delete
 
     draftsModel = new models::Drafts();
@@ -38,6 +39,18 @@ Drafts::Drafts(cppcms::service& serv) :
 Drafts::~Drafts() {
     delete draftsModel;
     //%%%NEXT_DEL_MODEL_CTRL_MARKER%%%
+}
+
+/**
+ *
+ */
+void Drafts::show() {
+
+    contents::drafts::Show c;
+    init_content(c);
+
+
+    render("drafts_show", c);
 }
 
 // %%%NEXT_ACTION_MARKER%%% , do not delete

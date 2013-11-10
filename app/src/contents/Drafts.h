@@ -32,6 +32,19 @@ namespace drafts {
 struct Drafts : public BaseContent {
 };
 
+/**
+ * @struct Show
+ * @since  10 November 2013
+ * @brief 
+ */
+struct Show : public Drafts {
+
+    Show() {
+
+    }
+
+};
+
 //%%%NEXT_CONTENT_MARKER%%%
 
 } // end of namespace drafts

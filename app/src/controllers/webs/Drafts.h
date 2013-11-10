@@ -59,6 +59,12 @@ class Drafts : public Controller {
         // %%%NEXT_VAR_MODEL_CTRL_MARKER%%%
     
 
+        /**
+         * @brief @TODO add a description
+         * @since 10 November 2013
+         */
+        void show();
+
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 
 };
