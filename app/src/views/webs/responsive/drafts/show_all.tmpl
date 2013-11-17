@@ -1,12 +1,25 @@
 <% c++ #include "contents/Drafts.h" %>
 <% skin %>
 <% view drafts_show_all uses tatoblog::contents::drafts::ShowAll extends master %>
-<% template title() %><% gt "TODO TITLE" %><% end template %>
+<% template title() %><% gt "View all drafts" %><% end template %>
 
 
-<% template body() %> 
-    Edit Me Drafts / ShowAll
+<% template main_content() %>
+<% include begin_module() %>
+    <% foreach post in posts %>
+    <ul>
+        <% item %>
+        <li>
+            <% include draft_link(post) %>
+        </li>
+        <% end %>
+    </ul>
+    <% end foreach %>
+<% include end_module() %>
 <% end template %>
+
+
+
 
 
 

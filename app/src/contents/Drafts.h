@@ -102,6 +102,8 @@ struct Edit : public Drafts {
  */
 struct ShowAll : public Drafts {
 
+    results::Posts posts;
+
     ShowAll() {
 
     }

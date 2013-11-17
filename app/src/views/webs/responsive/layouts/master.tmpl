@@ -160,6 +160,16 @@
                 <a href="/posts/write-new"><% gt "New post" %></a>
             </li>
         </ul>
+        <ul class="nav">
+            <li >
+                <a href="/posts/show-all"><% gt "All posts" %></a>
+            </li>
+        </ul>
+        <ul class="nav">
+            <li >
+                <a href="/drafts/show-all"><% gt "All drafts" %></a>
+            </li>
+        </ul>
     <% end if %>
 <% end template %>
 
@@ -334,8 +344,20 @@
  * @since 22 April 2013
  */
 <% template post_link(tatoblog::results::Post const& post) %>
-<a href="/posts/show/<%= post.slug %>"><%= post.title %></a>
+<a href="<%= post.show_url() %>"><%= post.title %></a>
 <% end template %>
+
+/**
+ * @brief Used to a link to a draft using a Post object
+ *
+ * @since 17 November 2013
+ */
+
+<% template draft_link(tatoblog::results::Post const& post) %>
+<a href="<%= post.draft_url() %>"><%= post.title %></a>
+<% end template %>
+
+
 
 /**
  * @brief generate the "read more ..." link

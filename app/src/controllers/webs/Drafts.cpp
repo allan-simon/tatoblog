@@ -161,6 +161,7 @@ void Drafts::show_all() {
     contents::drafts::ShowAll c;
     init_content(c);
 
+    c.posts = draftsModel->get_all();
 
     render("drafts_show_all", c);
 }
