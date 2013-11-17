@@ -35,6 +35,7 @@ Drafts::Drafts(cppcms::service& serv) :
 
     dispatcher().assign("/edit/(.+)", &Drafts::edit, this, 1);
     dispatcher().assign("/edit_treat", &Drafts::edit_treat, this);
+    dispatcher().assign("/show-all", &Drafts::show_all, this);
     //%%%NEXT_ACTION_DISPATCHER_MARKER%%%, do not delete
 
     draftsModel = new models::Drafts();
@@ -151,6 +152,18 @@ void Drafts::edit_treat() {
 
 }
 
+
+/**
+ *
+ */
+void Drafts::show_all() {
+
+    contents::drafts::ShowAll c;
+    init_content(c);
+
+
+    render("drafts_show_all", c);
+}
 
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 

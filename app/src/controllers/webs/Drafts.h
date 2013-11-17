@@ -79,6 +79,12 @@ class Drafts : public Controller {
          */
         void edit_treat();
 
+        /**
+         * @brief @TODO add a description
+         * @since 17 November 2013
+         */
+        void show_all();
+
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 
 };

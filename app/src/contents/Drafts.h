@@ -96,6 +96,18 @@ struct Edit : public Drafts {
 
 };
 
+/**
+ * @struct ShowAll
+ * @since  17 November 2013
+ */
+struct ShowAll : public Drafts {
+
+    ShowAll() {
+
+    }
+
+};
+
 //%%%NEXT_CONTENT_MARKER%%%
 
 } // end of namespace drafts
