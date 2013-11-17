@@ -119,6 +119,14 @@ namespace results {
             return "/drafts/edit/" + slug;
         }
 
+        /**
+         *
+         */
+        const std::string publish_url() const {
+            return "/drafts/publish/" + std::to_string(id);
+        }
+
+
 
     };
 

@@ -116,12 +116,38 @@ void Drafts::edit(
  */
 void Drafts::edit_treat() {
 
+    TREAT_PAGE();
+    LOGIN_REQUIRED();
+
     forms::drafts::Edit form;
     form.load(context());
 
     if (!form.validate()) {
+        //TODO add a more precise message
+        add_error(_("The form is not valid."));
         go_back_to_previous_page();
+        return;
     }
+
+    results::Post post = form.get_post();
+
+    const int returnCode = draftsModel->edit(
+        post
+    );
+
+    if (returnCode < 0) {
+        add_error(_("Problem while saving draft."));
+        go_back_to_previous_page();
+        return;
+    }
+
+    if (form.publishAndShow.value()) {
+        redirect(post.publish_url());
+        return;
+    }
+
+    add_success(_("Draft edited"));
+    redirect(post.draft_url());
 
 }
 
