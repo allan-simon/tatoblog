@@ -19,6 +19,10 @@
 #include "generics/markdown.h"
 //%%%NEXT_INC_MODEL_CTRL_MARKER%%%
 
+#ifndef _
+    #define _(X) cppcms::locale::translate(X)
+#endif
+
 namespace tatoblog {
 namespace controllers {
 namespace webs {
@@ -28,6 +32,9 @@ Drafts::Drafts(cppcms::service& serv) :
 {
 
     dispatcher().assign("/show/(.+)", &Drafts::show, this, 1);
+
+    dispatcher().assign("/edit", &Drafts::edit, this);
+    dispatcher().assign("/edit_treat", &Drafts::edit_treat, this);
     //%%%NEXT_ACTION_DISPATCHER_MARKER%%%, do not delete
 
     draftsModel = new models::Drafts();
@@ -71,6 +78,34 @@ void Drafts::show(const std::string slug) {
 
     render("drafts_show", c);
 }
+
+/**
+ *
+ */
+void Drafts::edit() {
+
+    contents::drafts::Edit c;
+    init_content(c);
+
+
+    render("drafts_edit", c);
+}
+
+
+/**
+ *
+ */
+void Drafts::edit_treat() {
+
+    forms::drafts::Edit form;
+    form.load(context());
+
+    if (!form.validate()) {
+        go_back_to_previous_page();
+    }
+
+}
+
 
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 

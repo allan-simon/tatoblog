@@ -65,6 +65,18 @@ class Drafts : public Controller {
          */
         void show(const std::string slug);
 
+        /**
+         * @brief @TODO add a description
+         * @since 16 November 2013
+         */
+        void edit();
+
+        /**
+         * @brief @TODO add a description
+         * @since 16 November 2013
+         */
+        void edit_treat();
+
 // %%%NEXT_ACTION_MARKER%%% , do not delete
 
 };

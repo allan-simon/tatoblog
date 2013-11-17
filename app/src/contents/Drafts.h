@@ -17,9 +17,9 @@
 #define TATOBLOG_CONTENTS_DRAFTS_H
 
 #include "contents/BaseContent.h"
-#include "contents/forms/edit.h"
 #include "results/Posts.h"
 
+#include "contents/forms/draft_edit.h"
 //%%%NEXT_CONTENT_FORM_INCLUDE_MARKER%%%
 
 namespace tatoblog {
@@ -67,6 +67,22 @@ struct Show : public Drafts {
 
     Show() {
 
+    }
+
+};
+
+/**
+ * @struct Edit content used by the draft/edit page
+ * @since  16 November 2013
+ */
+struct Edit : public Drafts {
+
+    ::tatoblog::forms::drafts::Edit editForm;
+
+    /**
+     * @brief Constructor
+     */
+    Edit() {
     }
 
 };
