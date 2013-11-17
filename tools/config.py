@@ -36,6 +36,7 @@ REPLACEMENTS = {
     '@AUTHOR@' : 'Allan Simon',
     '@EMAIL@': 'allan.simon@supinfo.com',
     '@PROJECT_NAME_CODE@' : 'tatoblog',
+    '@PROJECT_NS@' : 'tatoblog',
     '@PROJECT_NAME_HUMAN@': 'Tatoblog',
     '@MAIN_CLASS@' : 'TatoBlog',
     '@MAIN_CLASS_HEADER@' : 'TATOBLOG',
