@@ -115,11 +115,11 @@ struct BasePost : public cppcms::form {
         main.name("main");
         main.message(_( "Main content"));
 
-        publishAndShow.name(_("Publish and show"));
-        publishAndShow.value("publishAndShow");
+        publishAndShow.value(_("Publish and show"));
+        publishAndShow.name("publishAndShow");
        
-        saveAsDraft.name(_("Save as draft"));
-        saveAsDraft.value("saveAsDraft");
+        saveAsDraft.value(_("Save as draft"));
+        saveAsDraft.name("saveAsDraft");
 
     }
 
