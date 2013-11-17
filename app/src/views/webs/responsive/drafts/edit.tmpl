@@ -1,13 +1,31 @@
 <% c++ #include "contents/Drafts.h" %>
 <% skin %>
-<% view drafts_edit uses tatoblog::contents::drafts::Edit extends master %>
-<% template title() %><% gt "TODO TITLE" %><% end template %>
+<% view drafts_edit uses tatoblog::contents::drafts::Edit extends post_edition %>
+<% template title() %><% gt "Edit draft" %><% end template %>
 
 
-<% template body() %> 
-    Edit Me Drafts / Edit
+<% template main_content() %> 
+<div class="module">
+    <h2><% gt "Edit draft" %></h2>
+    <form method="POST" action="/drafts/edit_treat" >
+        <% include inner_form(editForm) %>
+    </form>
+</div>
 <% end template %>
 
+<% template annexe_content() %> 
+<% include begin_module() %>
+    <h2><% gt "Menu" %></h2>
+
+    <ul>
+        <li>
+            <a href='<%= post.show_url() %>'>
+                <% gt "Go back to post" %>
+            </a>
+        </li>
+    </ul>
+<% include end_module() %>
+<% end template %>
 
 
 <% end view %>

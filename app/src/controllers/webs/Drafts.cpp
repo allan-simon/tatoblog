@@ -33,7 +33,7 @@ Drafts::Drafts(cppcms::service& serv) :
 
     dispatcher().assign("/show/(.+)", &Drafts::show, this, 1);
 
-    dispatcher().assign("/edit", &Drafts::edit, this);
+    dispatcher().assign("/edit/(.+)", &Drafts::edit, this, 1);
     dispatcher().assign("/edit_treat", &Drafts::edit_treat, this);
     //%%%NEXT_ACTION_DISPATCHER_MARKER%%%, do not delete
 
@@ -82,9 +82,28 @@ void Drafts::show(const std::string slug) {
 /**
  *
  */
-void Drafts::edit() {
+void Drafts::edit(
+    const std::string slug
+) {
 
-    contents::drafts::Edit c;
+    LOGIN_REQUIRED();
+
+    const std::string lang = get_interface_lang();
+
+    results::Post post = draftsModel->get_from_lang_and_slug(
+        lang,
+        slug
+    );
+
+    if (!post.exists()) {
+        add_error(_("This article does not exists"));
+        go_to_main_page();
+        return;
+    }
+
+    cache().rise(post.cache_key());
+
+    contents::drafts::Edit c(post);
     init_content(c);
 
 

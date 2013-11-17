@@ -112,6 +112,14 @@ namespace results {
             return "/drafts/show/" + slug;
         }
 
+        /**
+         *
+         */
+        const std::string edit_draft_url() const {
+            return "/drafts/edit/" + slug;
+        }
+
+
     };
 
     typedef std::vector<results::Post> Posts;

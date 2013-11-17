@@ -69,7 +69,9 @@ class Drafts : public Controller {
          * @brief @TODO add a description
          * @since 16 November 2013
          */
-        void edit();
+        void edit(
+            const std::string slug
+        );
 
         /**
          * @brief @TODO add a description

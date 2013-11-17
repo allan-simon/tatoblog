@@ -79,11 +79,20 @@ struct Edit : public Drafts {
 
     ::tatoblog::forms::drafts::Edit editForm;
 
+    results::Post post;
     /**
      * @brief Constructor
      */
     Edit() {
     }
+
+    /**
+     * @brief Constructor
+     */
+    Edit(const results::Post &_post) : editForm(_post), post(_post) {
+    }
+
+
 
 };
 
